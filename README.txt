@@ -1,4 +1,4 @@
-Métodos de Optimización
+Métodos de Optimización: Hito 2
 Entrega: por Enero parece
 
 Lenguaje a usar: Java
@@ -39,6 +39,9 @@ Si se encuentra algun error/bug o se sube contenido que aún no esta terminado
 y por lo tanto presenta errores, es ALTAMENTE recomendable crear un
 Issue en la pestaña Issue de Bitbucket, para que no se nos pasen errores
 sin darnos cuenta.
+
+
+
 
 --- GIT GUI:
 
