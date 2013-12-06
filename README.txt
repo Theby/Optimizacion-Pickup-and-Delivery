@@ -3,6 +3,9 @@ Entrega: por Enero parece
 
 Lenguaje a usar: Java
 
+Para bajar Git:
+https://code.google.com/p/msysgit/downloads/list
+
 --- GIT BASH:
 
 Para Empezar a trabajar se debe hacer un clone del proyecto, puedes presionar
