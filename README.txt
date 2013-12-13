@@ -1,4 +1,5 @@
-Métodos de Optimización: Hito 2
+USACH - IngenierÃ­a Civil en InformÃ¡tica
+MÃ©todos de OptimizaciÃ³: Hito 2
 Entrega: por Enero parece
 
 Lenguaje a usar: Java
@@ -8,11 +9,12 @@ https://code.google.com/p/msysgit/downloads/list
 
 --- GIT BASH:
 
-Para Empezar a trabajar se debe hacer un clone del proyecto, puedes presionar
-la opción que se encuentra arriba o usar:
-   git clone https://Theby@bitbucket.org/Theby/optimizaci-n-pickup-and-delivery.git
-como comando directamente en la consola Git Bash.
-Luego pueden realizar un push para actualizar información, aunque esto
+Para Empezar a trabajar se debe hacer un clone del proyecto, para ello
+basta con realizar:
+      -> git clone "direccion del repositorio"
+Donde la "direccion del repositorio" puedes encontrar abajo a la derecha de esta pÃ¡gina.
+
+Luego puedes realizar un push para actualizar informaciÃ³n, aunque esto
 no es necesario la primera vez:
    git push origin master
       -> introduzco clave
@@ -34,13 +36,9 @@ actualizar el contenido en el pc con el contenido actual del repositorio:
    git pull origin master
       -> introduzco clave
 
-Si se van a realizar pruebas que pueden arruinar todo, se recomienda hacer
-un Fork/Branch del Proyecto para hacer un merge después, si es que
-todo funciona bien.
-
-Si se encuentra algun error/bug o se sube contenido que aún no esta terminado
+Si se encuentra algun error/bug o se sube contenido que aÃº no esta terminado
 y por lo tanto presenta errores, es ALTAMENTE recomendable crear un
-Issue en la pestaña Issue de Bitbucket, para que no se nos pasen errores
+Issue en la pestaÃ±a Issue de GitHub, para que no se nos pasen errores
 sin darnos cuenta.
 
 
@@ -48,7 +46,7 @@ sin darnos cuenta.
 
 --- GIT GUI:
 
-Esto permite trabajar con interfaz grafica, todo esta allí, solo deben elegir
+Esto permite trabajar con interfaz grafica, todo esta allÃ­, solo deben elegir
 la carpeta del respositorio y todo se hace por botones.
 
 En lo personal prefiero GIT BASH
