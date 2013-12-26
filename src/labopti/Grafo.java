@@ -1,13 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package labopti;
 
 import java.util.ArrayList;
 
 /**
- *
+ * Clase Grafo, contiene una lista de sus nodos y funciones asociadas
+ * al menejo de nodos.
  * @author Luis
  */
 public class Grafo {
