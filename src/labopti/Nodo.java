@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Luis
  */
-public class Nodo {
+public abstract class Nodo {
     private ArrayList <Nodo> LSgte; //lista de grafos a los que apunta este nodo.
     private ArrayList <Integer> LCosto; //lista de costos asociados a cada transición.
     public String nombre;

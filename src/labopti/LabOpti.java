@@ -14,10 +14,9 @@ public class LabOpti {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Nodo A = new Nodo("A");
-        Nodo B = new Nodo("B");
-        Nodo C = new Nodo("C");
+        MyNodo A = new MyNodo("A");
+        MyNodo B = new MyNodo("B");
+        MyNodo C = new MyNodo("C");
         
         Grafo G = new Grafo();
         G.add(A, B, 10);
