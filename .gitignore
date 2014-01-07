@@ -1,5 +1,6 @@
+#Archivos usados por NetBeans
 /dist
 /build
 /nbproject
-manifest.mf
 build.xml
+manifest.mf
