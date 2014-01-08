@@ -27,7 +27,15 @@ public class LabOpti {
         G.add(C, B);
         
         G.mostrar();
+        GrafoTabla G2;
         
+        try{
+            MyReader myreader = new MyReader();
+            G2 = myreader.AnalisarArchivo();
+        }
+        catch(Exception e){
+            System.out.println("EXCEPTION!!!!");
+        }
         
     }
 }

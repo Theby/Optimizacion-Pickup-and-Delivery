@@ -14,8 +14,8 @@ public class Grafo {
     private ArrayList<Nodo> LNodos;
 
     Grafo(){
-    LNodos = new ArrayList();
-}
+        LNodos = new ArrayList();
+    }
     
     /**
      * Agrega la transición entre el nodo A y el B, asumiendo un costo 0.

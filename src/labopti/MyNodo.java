@@ -9,10 +9,16 @@ package labopti;
  * @author Luis
  */
 public class MyNodo extends Nodo{
-    boolean flag1 = false;
-    boolean flag2 = true;
+    int coordX;
+    int coordY;
     
     MyNodo(String nom){
         super(nom); //constructor de clase superior.
     }
+    
+    public void setCoord(int X, int Y){
+        coordX = X;
+        coordY = Y;
+    }
+    
 }
