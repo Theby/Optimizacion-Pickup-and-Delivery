@@ -8,12 +8,12 @@ package labopti;
  *
  * @author Luis
  */
-public class MyNodo extends Nodo{
+public class MyNodo extends NodoTabla{
     int coordX;
     int coordY;
     
-    MyNodo(String nom){
-        super(nom); //constructor de clase superior.
+    MyNodo(int x, int y){
+        super(x,y); //constructor de clase superior.
     }
     
     public void setCoord(int X, int Y){

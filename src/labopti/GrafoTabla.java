@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Luis
  */
 public class GrafoTabla {
-    ArrayList<NodoTabla> ListaNodos;
+    private ArrayList<NodoTabla> ListaNodos;
     double [][] matriz;    
     GrafoTabla(){
         ListaNodos = new ArrayList();
@@ -28,5 +28,9 @@ public class GrafoTabla {
                 matriz[i][j]=ListaNodos.get(i).distancia(ListaNodos.get(j));
             }
         }
+    }
+    
+    public ArrayList getArray(){
+        return ListaNodos;
     }
 }
