@@ -8,18 +8,18 @@ package labopti;
  *
  * @author Luis
  */
-public class Cliente {
-    int indiceCliente;
-    int indiceClienteEntrega;
+public class Requerimiento {
+    int NodoInicial;
+    int NodoDestino;
     int tiempoInicialCarga;
     int tiempoFinalCarga;
     int tiempoInicialEntrega;
     int tiempoFinalEntrega;
     
     
-    Cliente(int ic, int ice, int tic, int tfc, int tie, int tfe){
-        indiceCliente = ic;
-        indiceClienteEntrega = ice;
+    Requerimiento(int ic, int ice, int tic, int tfc, int tie, int tfe){
+        NodoInicial = ic;
+        NodoDestino = ice;
         tiempoInicialCarga = tic;
         tiempoFinalCarga = tfc;
         tiempoInicialEntrega = tie;

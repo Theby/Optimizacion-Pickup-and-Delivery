@@ -5,18 +5,17 @@
 package labopti;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Luis
  */
 public class MyReader extends Reader{
-    int numClientes;
     int numVehiculos;
-    int coordXInit;
-    int coordYInit;
+    int numNodos;
     
-    ArrayList<Cliente> ListaCliente;
+    ArrayList<Requerimiento> LReq;
     
     MyReader(String path) throws Exception{
         super(path);
@@ -28,16 +27,12 @@ public class MyReader extends Reader{
     
     public GrafoTabla AnalisarArchivo(){
         GrafoTabla G = new GrafoTabla();
-        ArrayList<Cliente> LCliente = new ArrayList();
+        ArrayList<Requerimiento> LReqAux = new ArrayList();
         String Line = this.readLine();
         String[] auxS = Line.split(" ");
-        numClientes = Integer.parseInt(auxS[0]);
-        numVehiculos = Integer.parseInt(auxS[1]);
-        Line = this.readLine();
-        auxS = Line.split(" ");
-        coordXInit = Integer.parseInt(auxS[0]);
-        coordYInit = Integer.parseInt(auxS[1]);
-        while(this.HasNextLine()){
+        numVehiculos = Integer.parseInt(auxS[0]);
+        numNodos = Integer.parseInt(auxS[1]);
+        while(this.HasNextLine()){//Nodo 0 = nodo central.
             Line = this.readLine();
             auxS = Line.split(" ");
             if(auxS.length == 2){//Caso de linea con 2 valores.
@@ -53,13 +48,16 @@ public class MyReader extends Reader{
                     int d = Integer.parseInt(auxS[3]);
                     int e = Integer.parseInt(auxS[4]);
                     int f = Integer.parseInt(auxS[5]);
-                    Cliente auxC = new Cliente(a,b,c,d,e,f);//crear cliente
-                    LCliente.add(auxC);//agregar cliente.
+                    Requerimiento auxC = new Requerimiento(a,b,c,d,e,f);//crear cliente
+                    LReqAux.add(auxC);//agregar cliente.
+                }
+                else{
+                    ErrorMessenger.ShowError(0);
                 }
             }
         }
         G.interconectar();
-        this.ListaCliente = LCliente; 
+        this.LReq=LReqAux;
         return G;
     }
 }

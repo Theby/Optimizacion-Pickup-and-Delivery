@@ -4,6 +4,8 @@
  */
 package labopti;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Luis
@@ -15,10 +17,13 @@ public class LabOpti {
      */
     public static void main(String[] args) {
         GrafoTabla G = null;
+        ArrayList <Requerimiento> LReq;
         try{
             MyReader myreader = new MyReader();
             G = myreader.AnalisarArchivo();
-            G.interconectar();
+            LReq = myreader.LReq;
+            
+            
             G.mostrarNodos();
             G.mostrarTabla();
         }
