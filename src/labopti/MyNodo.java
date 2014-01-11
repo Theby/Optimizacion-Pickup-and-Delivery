@@ -13,12 +13,21 @@ public class MyNodo extends NodoTabla{
     int coordY;
     
     MyNodo(int x, int y){
-        super(x,y); //constructor de clase superior.
+        coordX = x;
+        coordY = y;
+    }
+    
+    public void mostrar(){
+        System.out.println("[x,y]=[" + coordX + ", " + coordY +"]");
     }
     
     public void setCoord(int X, int Y){
         coordX = X;
         coordY = Y;
     }
-    
+    public double distancia(MyNodo Nodo){
+        double distanciaX = this.coordX-Nodo.coordX;
+        double distanciaY = this.coordY-Nodo.coordY;
+        return Math.sqrt((distanciaX*distanciaX) + (distanciaY*distanciaY));
+    }
 }

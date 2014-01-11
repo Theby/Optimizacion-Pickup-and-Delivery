@@ -8,18 +8,8 @@ package labopti;
  *
  * @author Luis
  */
-public class NodoTabla {
-    int coordX;
-    int coordY;
+public abstract class NodoTabla {
 
-    NodoTabla(int x, int y){
-        coordX = x;
-        coordY = y;
-    }
-    
-    public double distancia(NodoTabla Nodo){
-        double distanciaX = this.coordX-Nodo.coordX;
-        double distanciaY = this.coordY-Nodo.coordY;
-        return Math.sqrt((distanciaX*distanciaX) + (distanciaY*distanciaY));
-    }
+    public abstract void mostrar();
+
 }

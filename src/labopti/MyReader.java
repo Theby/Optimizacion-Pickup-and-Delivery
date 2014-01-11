@@ -41,7 +41,7 @@ public class MyReader extends Reader{
             Line = this.readLine();
             auxS = Line.split(" ");
             if(auxS.length == 2){//Caso de linea con 2 valores.
-                NodoTabla auxNodo = new NodoTabla(Integer.parseInt(auxS[0]), Integer.parseInt(auxS[1])); //crear nodo.
+                MyNodo auxNodo = new MyNodo(Integer.parseInt(auxS[0]), Integer.parseInt(auxS[1])); //crear nodo.
                 G.addNodo(auxNodo); //agregar nodo.
             }
             else{
