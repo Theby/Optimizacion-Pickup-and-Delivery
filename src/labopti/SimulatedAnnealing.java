@@ -15,7 +15,7 @@ public class SimulatedAnnealing{
 		int coste_solucion_inicial;
 
 	public
-		static void setRequerimientos(GrafoTabla grafico, ArrayList<Camion> camiones){
+		static void setRequerimientos(GrafoTabla grafico, ArrayList <Requerimiento> requerimientos, ArrayList <Camion> camiones){
 			double [][] matriz = grafico.getMatriz();
 			int posicion;
 			int num_camiones = camiones.size();
