@@ -9,8 +9,8 @@ package labopti;
  * @author Luis
  */
 public class Requerimiento {
-    int NodoInicial;
-    int NodoDestino;
+    MyNodo NodoInicial;
+    MyNodo NodoDestino;
     int tiempoInicialCarga;
     int tiempoFinalCarga;
     int tiempoInicialEntrega;
