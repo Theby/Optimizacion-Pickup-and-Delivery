@@ -15,11 +15,11 @@ public class SimulatedAnnealing{
 		int coste_solucion_inicial;
 
 	public
-		static void setRequerimientos(GrafoTabla grafico){
-			ArrayList<NodoTabla> Tabla = grafico.getArray();
+		static void setRequerimientos(GrafoTabla grafico, ArrayList<Camion> camiones){
+			double [][] matriz = grafico.getMatriz();
 
-			
-			
+
+
 		}
 
 		static int heuristica(GrafoTabla grafico){
