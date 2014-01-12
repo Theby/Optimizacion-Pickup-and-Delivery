@@ -13,11 +13,11 @@ import java.util.Vector;
 public class Camion{
 	private
 		//Para identificar este camion
-		unsigned int identificador;
+		int identificador;
 
 		//Para guardar numericamente la lista de requerimientos
 		vector<int> requerimientos;
-		unsigned int requerimientos_size;
+		int requerimientos_size;
 
 		/*
 		 * Para guardar la distancia de un requerimiento a otro
@@ -25,17 +25,19 @@ public class Camion{
 		 * entre requerimientos[0] y requerimientos[1]
 		 */
 		vector<int> distancia_requerimientos;
-		unsigned int distancia_requerimientos_size;
+		int distancia_requerimientos_size;
 
 	public
 		Camion(){
 			identificador = 0;
+			requerimientos.push_back(0);
 			requerimientos_size = requerimientos.size();
 			distancia_requerimientos_size = distancia_requerimientos.size();
 		}
 
 		Camion(int id){
 			identificador = id;
+			requerimientos.push_back(0);
 			requerimientos_size = requerimientos.size();
 			distancia_requerimientos_size = distancia_requerimientos.size();
 		}
@@ -131,5 +133,15 @@ public class Camion{
 				System.out.println(" --> ");
 				System.out.println("   "+getRequerimientos(i+1));
 			}
+		}
+
+		int getDistanciaTotal(){
+			int total=0;
+
+			for(int i=0;i<distancia_requerimientos_size;i++){
+				total += getDistanciaRequerimientos(i);
+			}
+
+			return total;
 		}
 }
