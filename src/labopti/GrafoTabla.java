@@ -15,15 +15,18 @@ public class GrafoTabla {
         ArrayList<NodoTabla> ListaNodos;
         double [][] matriz;
         int numero_nodos;
+        int numero_disponibles;
 
     GrafoTabla(){
         ListaNodos = new ArrayList();
         numero_nodos=0;
+        numero_disponibles=0;
     }
     
     public void addNodo(NodoTabla Nodo){
         ListaNodos.add(Nodo);
         numero_nodos++;
+        numero_disponibles++;
     }
     public void interconectar(){
         int n = ListaNodos.size();
@@ -62,8 +65,20 @@ public class GrafoTabla {
     }
 
     public
+        void setNumeroNodos(int num){
+            numero_nodos = num;
+        }
+
         int getNumeroNodos(){
             return numero_nodos;
+        }
+
+        void setNumeroDisponibles(int num){
+            numero_disponibles = num;
+        }
+
+        int getNumeroDisponibles(){
+            return numero_disponibles;
         }
 
         double [][] getMatriz(){
@@ -74,17 +89,22 @@ public class GrafoTabla {
             return matriz[nodo_1][nodo_2];
         }
 
+        void setDisponibilidadNodo(int posicion){
+            ListaNodos[posicion].setDisponible(false);
+            setNumeroDisponibles(getNumeroDisponibles()-1);
+        }
+
         /*
          * El nodo pasado como argumento representa el nodo base desde el que se calcularan las distancias, es decir
          * Por ejemplo: getMenorDistancia(1) retorna el nodo más cercano al nodo 1.
          */
-        int getMenorDistancia(int nodo){
+        int getMenorDistanciaDisponible(int nodo){
             int num_nodos = getNumeroNodos();
             int minimo = matriz[nodo][nodo];
             int posicion = nodo;
 
             for(int i=0;i<num_nodos;i++){
-                if(i!=nodo){
+                if(i!=nodo && ListaNodos[i].getDisponible()){
                     if(matriz[nodo][i]<minimo){
                         minimo = matriz[nodo][i];
                         posicion = i;
