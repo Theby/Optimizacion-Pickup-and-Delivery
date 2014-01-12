@@ -13,72 +13,97 @@ import java.util.ArrayList;
 public class GrafoTabla {
     private 
         ArrayList<NodoTabla> ListaNodos;
+        ArrayList<MyNodo> ListaNodosDeCarga;
+        ArrayList<MyNodo> ListaNodosDeDestino;
         double [][] matriz;
-        int numero_nodos;
-        int numero_disponibles;
-
-    GrafoTabla(){
-        ListaNodos = new ArrayList();
-        numero_nodos=0;
-        numero_disponibles=0;
-    }
+        int numero_nodos_totales;
+        int numero_nodos_carga;
+        int numero_nodos_destino;
+        int numero_disponibles_totales;
+        int numero_disponibles_carga;
+        int numero_disponibles_destino;
     
-    public void addNodo(NodoTabla Nodo){
-        ListaNodos.add(Nodo);
-        numero_nodos++;
-        numero_disponibles++;
-    }
-    public void interconectar(){
-        int n = ListaNodos.size();
-        matriz = new double[n][n];
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                matriz[i][j]=((MyNodo)ListaNodos.get(i)).distancia((MyNodo)ListaNodos.get(j));
-            }
-        }
-    }
-    
-    public ArrayList getArray(){
-        return ListaNodos;
-    }
-    
-    public int ArraySize(){
-        return ListaNodos.size();
-    }
-    
-    public void mostrarNodos(){
-        int n = ListaNodos.size();
-        for(int i =0; i<n; i++){
-            System.out.print(i +": ");
-            ListaNodos.get(i).mostrar();
-        }
-    }
-    
-    public void mostrarTabla(){
-        int n = ListaNodos.size();
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                System.out.print(matriz[i][j] + ", ");
-            }
-            System.out.println("");
-        }
-    }
-
     public
-        void setNumeroNodos(int num){
-            numero_nodos = num;
+        GrafoTabla(){
+            ListaNodos = new ArrayList();
+            ListaNodosDeCarga = new ArrayList();
+            ListaNodosDeDestino = new ArrayList();
+            numero_nodos_totales = 0;
+            numero_nodos_carga = 0;
+            numero_nodos_destino = 0;
+            numero_disponibles_totales = 0;
+            numero_disponibles_carga = 0;
+            numero_disponibles_destino = 0;
         }
 
-        int getNumeroNodos(){
-            return numero_nodos;
+        void addNodo(NodoTabla Nodo){
+            ListaNodos.add(Nodo);
+            numero_nodos_totales++;
+            numero_disponibles_totales++;
         }
 
-        void setNumeroDisponibles(int num){
-            numero_disponibles = num;
+        void addNodoCarga(){
+            ListaNodosDeCarga.add(Nodo);
+            numero_nodos_carga++;
+            numero_disponibles_carga++;
         }
 
-        int getNumeroDisponibles(){
-            return numero_disponibles;
+        void addNodoDestino(){
+            ListaNodosDeDestino.add(Nodo);
+            numero_nodos_destino++;
+            numero_disponibles_destino++;
+        }
+
+        void interconectar(){
+            int n = ListaNodos.size();
+            matriz = new double[n][n];
+            for(int i=0; i<n; i++){
+                for(int j=0; j<n; j++){
+                    matriz[i][j]=((MyNodo)ListaNodos.get(i)).distancia((MyNodo)ListaNodos.get(j));
+                }
+            }
+        }
+        
+        ArrayList getArray(){
+            return ListaNodos;
+        }
+        
+        int ArraySize(){
+            return ListaNodos.size();
+        }
+        
+        void mostrarNodos(){
+            int n = ListaNodos.size();
+            for(int i =0; i<n; i++){
+                System.out.print(i +": ");
+                ListaNodos.get(i).mostrar();
+            }
+        }
+        
+        void mostrarTabla(){
+            int n = ListaNodos.size();
+            for(int i=0; i<n; i++){
+                for(int j=0; j<n; j++){
+                    System.out.print(matriz[i][j] + ", ");
+                }
+                System.out.println("");
+            }
+        }
+
+        void setNumeroNodosTotales(int num){
+            numero_nodos_totales = num;
+        }
+
+        int getNumeroNodosTotales(){
+            return numero_nodos_totales;
+        }
+
+        void setNumeroDisponiblesTotales(int num){
+            numero_disponibles_totales = num;
+        }
+
+        int getNumeroDisponiblesTotales(){
+            return numero_disponibles_totales;
         }
 
         double [][] getMatriz(){
