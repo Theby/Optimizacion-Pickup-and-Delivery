@@ -26,7 +26,7 @@ public class MyReader extends Reader{
     }
     
     public GrafoTabla AnalisarArchivo(){
-        GrafoTabla G = new GrafoTabla();
+        GrafoTabla Grafo = new GrafoTabla();
         ArrayList<Requerimiento> LReqAux = new ArrayList();
         String Line = this.readLine();
         String[] auxS = Line.split(" ");
@@ -37,7 +37,7 @@ public class MyReader extends Reader{
             auxS = Line.split(" ");
             if(auxS.length == 2){//Caso de linea con 2 valores.
                 MyNodo auxNodo = new MyNodo(Integer.parseInt(auxS[0]), Integer.parseInt(auxS[1])); //crear nodo.
-                G.addNodo(auxNodo); //agregar nodo.
+                Grafo.addNodo(auxNodo); //agregar nodo.
             }
             else{
                 if(auxS.length == 6){//caso de linea con 6 valores.
@@ -48,16 +48,18 @@ public class MyReader extends Reader{
                     int d = Integer.parseInt(auxS[3]);
                     int e = Integer.parseInt(auxS[4]);
                     int f = Integer.parseInt(auxS[5]);
-                    Requerimiento auxC = new Requerimiento(a,b,c,d,e,f);//crear cliente
+                    Requerimiento auxC = new Requerimiento(Grafo.getArray().get(a),Grafo.getArray().get(b),c,d,e,f);//crear cliente
                     LReqAux.add(auxC);//agregar cliente.
+                    Grafo.addNodoCarga(Grafo.getArray().get(a));
+                    Grafo.addNodoDestino(Grafo.getArray().get(b));
                 }
                 else{
                     ErrorMessenger.ShowError(0);
                 }
             }
         }
-        G.interconectar();
+        Grafo.interconectar();
         this.LReq=LReqAux;
-        return G;
+        return Grafo;
     }
 }
