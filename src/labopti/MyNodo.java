@@ -9,12 +9,16 @@ package labopti;
  * @author Luis
  */
 public class MyNodo extends NodoTabla{
-    int coordX;
-    int coordY;
+    public
+        int coordX;
+        int coordY;
+    private 
+        bool disponible;
     
     MyNodo(int x, int y){
         coordX = x;
         coordY = y;
+        disponible = true;
     }
     
     public void mostrar(){
@@ -30,4 +34,12 @@ public class MyNodo extends NodoTabla{
         double distanciaY = this.coordY-Nodo.coordY;
         return Math.sqrt((distanciaX*distanciaX) + (distanciaY*distanciaY));
     }
+
+    public
+        void setDisponible(bool valor) {
+            disponible = valor;
+        }
+        bool getDisponible(){
+            return disponible;
+        }
 }
