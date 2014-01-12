@@ -15,13 +15,22 @@ public class SimulatedAnnealing{
 		int coste_solucion_inicial;
 
 	public
+		static void setRequerimientos(GrafoTabla grafico){
+			ArrayList<NodoTabla> Tabla = grafico.getArray();
+
+			
+			
+		}
+
 		static int heuristica(GrafoTabla grafico){
 			//valor inicial alto para t
 			//coste_solucion_inicial elegida arbitrariamente
 			ArrayList<NodoTabla> Tabla = grafico.getArray();
                         
-                        
+                      
 		}
+
+		static 
 }
 
 
