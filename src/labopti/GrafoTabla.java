@@ -11,11 +11,12 @@ import java.util.ArrayList;
  * @author Luis
  */
 public class GrafoTabla {
-    private ArrayList<NodoTabla> ListaNodos;
-    double [][] matriz;    
-    GrafoTabla(){
-        ListaNodos = new ArrayList();
-    }
+    private 
+        ArrayList<NodoTabla> ListaNodos;
+        double [][] matriz;
+        GrafoTabla(){
+            ListaNodos = new ArrayList();
+        }
     
     public void addNodo(NodoTabla Nodo){
         ListaNodos.add(Nodo);
