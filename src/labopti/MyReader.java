@@ -15,6 +15,7 @@ public class MyReader extends Reader{
     int numNodos;
     
     ArrayList<Requerimiento> LReq;
+    ArrayList<Camion> Vehiculos;
     
     MyReader(String path) throws Exception{
         super(path);
@@ -27,6 +28,7 @@ public class MyReader extends Reader{
     public GrafoTabla AnalisarArchivo(){
         GrafoTabla Grafo = new GrafoTabla();
         ArrayList<Requerimiento> LReqAux = new ArrayList();
+        ArrayList<Camion> LCamAux = new ArrayList();
         String Line = this.readLine();
         String[] auxS = Line.split(" ");
         numVehiculos = Integer.parseInt(auxS[0]);
@@ -62,6 +64,13 @@ public class MyReader extends Reader{
         }
         Grafo.interconectar();
         this.LReq=LReqAux;
+        
+        for(int i=0;i<numVehiculos;i++){
+            Camion camion_aux = new Camion(i);
+            LCamAux.add(camion_aux);
+        }
+        this.Vehiculos=LCamAux;
+        
         return Grafo;
     }
 }

@@ -219,6 +219,37 @@ public class Camion{
 			return 0;
 		}
 	}
-
+        
+        public void clearListaDistanciaCargador(){
+            ListaDistanciaCargador.clear();
+            lista_distancia_cargador_size = 0;
+        }
+        
+        public void clearListaDistanciaRequerimientos(){
+            ListaDistanciaRequerimientos.clear();
+            lista_requerimientos_size = 0;
+        }
+        
+        public void clearListaRequerimientos(){
+            ListaRequerimientos.clear();
+            lista_requerimientos_size = 0;
+        }
+        
+        public void ordenarListaRequerimientos(GrafoTabla Grafico){
+            ArrayList <Requerimiento> ListaAuxiliar = new ArrayList();
+            int nodo_aux = 0;
+            double distancia_ref;
+            double distancia;
+            
+            distancia = Grafico.getDistancia(0, this.getListaRequerimientos().get(0).getNodoInicial().getPosicion());
+            
+            for(int i=0;i<this.getListaRequerimientosSize();i++){
+                distancia_ref = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos().get(i).getNodoInicial().getPosicion());
+                if(distancia>distancia_ref){
+                    distancia = distancia_ref;
+                }                           
+            }
+            
+        }
 
 }
