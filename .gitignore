@@ -2,6 +2,9 @@
 /dist
 /build
 /nbproject
+/test
+build.xml
+manifest.mf
 *.xml
 *.mf
 *.class
