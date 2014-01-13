@@ -238,6 +238,7 @@ public class Camion{
         public void ordenarListaRequerimientos(GrafoTabla Grafico){
             ArrayList <Requerimiento> ListaAuxiliar = new ArrayList();
             int nodo_aux = 0;
+<<<<<<< HEAD
             double distancia_ref;
             double distancia;
             
@@ -248,6 +249,11 @@ public class Camion{
                 if(distancia>distancia_ref){
                     distancia = distancia_ref;
                 }                           
+=======
+            
+            for(int i=0;i<this.getListaRequerimientosSize();i++){
+                double distancia = Grafico.getDistancia(0, this.getListaRequerimientos().get(0).getNodoInicial().getPosicion());
+>>>>>>> 22ead86ed2ad5210182e8fd990512f414bf94e63
             }
             
         }
