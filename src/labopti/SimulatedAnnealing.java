@@ -13,7 +13,7 @@ import java.util.Random;
 public class SimulatedAnnealing{
     
 public static void setRequerimientos(GrafoTabla Grafico, ArrayList <Requerimiento> ListaRequerimientos, ArrayList <Camion> Camiones){
-    int nodo_carga_aux=0;
+    int nodo_carga_aux;
     int posicion;
     Requerimiento req_aux;
 
@@ -36,7 +36,7 @@ public static void setRequerimientos(GrafoTabla Grafico, ArrayList <Requerimient
                         }							
                 }
 
-                //Agrega el requerimiento encontrado a la lista de requerimientos del camión
+                //Agrega el requerimiento encontrado a la lista de requerimientos del camiÃ³n
                 Camiones.get(i).setListaRequerimientos(req_aux);
 
                 //Obtiene la distancia del nodo inicial al nodo destino del requerimiento
@@ -51,7 +51,7 @@ public static void setRequerimientos(GrafoTabla Grafico, ArrayList <Requerimient
 
 public static void setRutas(GrafoTabla Grafico, ArrayList <Camion> Camiones){
     int pos_nodo_aux = 0;
-    //Por cada camión
+    //Por cada camiÃ³n
     for(int i=0;i<Camiones.size();i++){
         //Por cada Requisito
         for(int j=0;j<Camiones.get(i).getListaRequerimientosSize();j++){
@@ -83,14 +83,14 @@ public static void setSolucionVecina(GrafoTabla Grafico, ArrayList<Camion> Camio
     
     //Pasar un requerimiento a otro
     if(Camiones.get(camion_ran_1).getListaRequerimientosSize()!=Camiones.get(camion_ran_2).getListaRequerimientosSize() || prob<50){
-        //Para asegurarse que el camion_ran_1 es el que tiene más requerimientos
+        //Para asegurarse que el camion_ran_1 es el que tiene mÃ¡s requerimientos
         if(Camiones.get(camion_ran_1).getListaRequerimientosSize()<Camiones.get(camion_ran_2).getListaRequerimientosSize()){
             int aux = camion_ran_1;
             camion_ran_1 = camion_ran_2;
             camion_ran_2 = aux;
         }
         
-        //Añade al 2 el requerimiento exedente del 1
+        //AÃ±ade al 2 el requerimiento exedente del 1
         Camiones.get(camion_ran_2).setListaRequerimientos(Camiones.get(camion_ran_1).getListaRequerimientos().get(Camiones.get(camion_ran_1).getListaRequerimientosSize()-1));
         
         //Borra el requerimiento del 1

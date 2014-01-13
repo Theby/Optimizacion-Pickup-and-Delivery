@@ -165,11 +165,7 @@ public class Camion{
 	}
 
 	public void mostrarRequerimientos(){
-<<<<<<< HEAD
 		System.out.println("Requerimientos del CamiÃ³n "+getIdentificador()+":");
-=======
-		System.out.println("Requerimientos del Camnión "+getIdentificador()+":");
->>>>>>> 286d8816429fe4a61c31b14e6f4261c45d74758a
 		System.out.println("   Formato: Nodo -> (distancia) -> Nodo");
 		for(int i=0;i<lista_requerimientos_size;i++){
 			System.out.print("   "+getListaRequerimientos(i).getNodoInicial());
@@ -181,7 +177,7 @@ public class Camion{
 	}
 
 	public void mostrarRutas(){
-		System.out.println("Rutas del Camnión "+getIdentificador()+":");
+		System.out.println("Rutas del Camniï¿½n "+getIdentificador()+":");
 		System.out.println("   Formato: Requerimiento -> (distancia) -> Requerimiento");
 		for(int i=0;i<lista_distancia_cargador_size;i++){
 			System.out.print("   "+getListaRequerimientos(i).getNodoDestino());
