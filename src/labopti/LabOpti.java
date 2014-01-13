@@ -18,17 +18,29 @@ public class LabOpti {
     public static void main(String[] args) {
         GrafoTabla G = null;
         ArrayList <Requerimiento> LReq;
+        ArrayList <Camion> Camiones; 
         try{
             MyReader myreader = new MyReader();
             G = myreader.AnalisarArchivo();
             LReq = myreader.LReq;
-            
+            Camiones = myreader.Vehiculos;
             
             G.mostrarNodos();
             G.mostrarTabla();
+            
+            SimulatedAnnealing.setRequerimientos(G, LReq, Camiones);
+            SimulatedAnnealing.setRutas(G, Camiones);
+            
+            for(int i=0;i<Camiones.size();i++){
+                Camiones.get(i).mostrarRequerimientos();
+                Camiones.get(i).mostrarRutas();
+            }
+            
+            System.out.println("FIN");
+            
         }
         catch(Exception e){
-            System.out.println("EXCEPTION!!!!");
+            System.out.println("EXCEPTION!!!!"+e);
         }
 
         
