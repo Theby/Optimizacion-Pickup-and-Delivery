@@ -165,7 +165,7 @@ public class Camion{
 	}
 
 	public void mostrarRequerimientos(){
-		System.out.println("Requerimientos del CamniÃ³n "+getIdentificador()+":");
+		System.out.println("Requerimientos del Camnión "+getIdentificador()+":");
 		System.out.println("   Formato: Nodo -> (distancia) -> Nodo");
 		for(int i=0;i<lista_requerimientos_size;i++){
 			System.out.print("   "+getListaRequerimientos(i).getNodoInicial());
@@ -177,7 +177,7 @@ public class Camion{
 	}
 
 	public void mostrarRutas(){
-		System.out.println("Rutas del CamniÃ³n "+getIdentificador()+":");
+		System.out.println("Rutas del Camnión "+getIdentificador()+":");
 		System.out.println("   Formato: Requerimiento -> (distancia) -> Requerimiento");
 		for(int i=0;i<lista_distancia_cargador_size;i++){
 			System.out.print("   "+getListaRequerimientos(i).getNodoDestino());
@@ -238,7 +238,6 @@ public class Camion{
         public void ordenarListaRequerimientos(GrafoTabla Grafico){
             ArrayList <Requerimiento> ListaAuxiliar = new ArrayList();
             int nodo_aux = 0;
-<<<<<<< HEAD
             double distancia_ref;
             double distancia;
             
@@ -249,11 +248,6 @@ public class Camion{
                 if(distancia>distancia_ref){
                     distancia = distancia_ref;
                 }                           
-=======
-            
-            for(int i=0;i<this.getListaRequerimientosSize();i++){
-                double distancia = Grafico.getDistancia(0, this.getListaRequerimientos().get(0).getNodoInicial().getPosicion());
->>>>>>> 22ead86ed2ad5210182e8fd990512f414bf94e63
             }
             
         }
