@@ -14,6 +14,7 @@ public class MyNodo extends NodoTabla{
         int coordY;
     private 
         bool disponible;
+        int posicion;
 
     public
         MyNodo(int x, int y){
@@ -21,7 +22,7 @@ public class MyNodo extends NodoTabla{
             coordY = y;
             disponible = true;
         }
-        
+
         void setDisponible(bool valor) {
             disponible = valor;
         }
@@ -42,5 +43,13 @@ public class MyNodo extends NodoTabla{
             double distanciaX = this.coordX-Nodo.coordX;
             double distanciaY = this.coordY-Nodo.coordY;
             return Math.sqrt((distanciaX*distanciaX) + (distanciaY*distanciaY));
+        }
+
+        void setPosicion(int pos){
+            posicion = pos;
+        }
+
+        void getPosicion(){
+            return posicion;
         }
 }
