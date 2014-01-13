@@ -10,6 +10,7 @@ package labopti;
  */
 public abstract class NodoTabla {
 
-    public abstract void mostrar();
+    public 
+        abstract void mostrar();
 
 }

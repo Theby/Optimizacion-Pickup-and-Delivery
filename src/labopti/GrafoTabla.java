@@ -11,23 +11,21 @@ import java.util.ArrayList;
  * @author Luis
  */
 public class GrafoTabla {
-    private 
-        ArrayList<NodoTabla> ListaNodos;
-        ArrayList<MyNodo> ListaNodosDeCarga;
-        ArrayList<MyNodo> ListaNodosDeDestino;
-        double [][] matriz;
-        int numero_nodos_totales;
-        int numero_nodos_carga;
-        int numero_nodos_destino;
-        int numero_disponibles_totales;
-        int numero_disponibles_carga;
-        int numero_disponibles_destino;
+        private ArrayList<MyNodo> ListaNodos;
+        private ArrayList<MyNodo> ListaNodosDeCarga;
+        private ArrayList<MyNodo> ListaNodosDeDestino;
+        private double [][] matriz;
+        private int numero_nodos_totales;
+        private int numero_nodos_carga;
+        private int numero_nodos_destino;
+        private int numero_disponibles_totales;
+        private int numero_disponibles_carga;
+        private int numero_disponibles_destino;
    
     /*
      * Constructores, metodos funcionales y practicos
      */ 
-    public
-        GrafoTabla(){
+    public GrafoTabla(){
             ListaNodos = new ArrayList();
             ListaNodosDeCarga = new ArrayList();
             ListaNodosDeDestino = new ArrayList();
@@ -39,7 +37,7 @@ public class GrafoTabla {
             numero_disponibles_destino = 0;
         }
 
-        void interconectar(){
+    public void interconectar(){
             int n = ListaNodos.size();
             matriz = new double[n][n];
             for(int i=0; i<n; i++){
@@ -49,7 +47,7 @@ public class GrafoTabla {
             }
         }
         
-        void mostrarTabla(){
+    public void mostrarTabla(){
             int n = ListaNodos.size();
             for(int i=0; i<n; i++){
                 for(int j=0; j<n; j++){
@@ -59,17 +57,17 @@ public class GrafoTabla {
             }
         }
 
-        /*
-         * El nodo pasado como argumento representa el nodo base desde el que se calcularan las distancias, es decir
-         * Por ejemplo: getMenorDistancia(1) retorna el nodo más cercano al nodo 1.
-         */
-        int getMenorDistanciaTotalDisponible(int nodo){
-            int num_nodos = getNumeroNodos();
-            int minimo = matriz[nodo][nodo];
+    /*
+     * El nodo pasado como argumento representa el nodo base desde el que se calcularan las distancias, es decir
+     * Por ejemplo: getMenorDistancia(1) retorna el nodo más cercano al nodo 1.
+     */
+    public int getMenorDistanciaTotalDisponible(int nodo){
+            int num_nodos = getNumeroNodosTotales();
+            double minimo = getDistancia(nodo,nodo);
             int posicion = nodo;
 
             for(int i=0;i<num_nodos;i++){
-                if(i!=nodo && ListaNodos[i].getDisponible()){
+                if(i!=nodo && ListaNodos.get(i).getDisponible()){
                     if(getDistancia(nodo,i)<minimo){
                         minimo = getDistancia(nodo,i);
                         posicion = i;
@@ -80,13 +78,13 @@ public class GrafoTabla {
             return posicion;
         }
 
-        int getMenorDistanciaCargaDisponible(int nodo){
-            int num_nodos = getNumeroNodos();
-            int minimo = matriz[nodo][nodo];
+    public int getMenorDistanciaCargaDisponible(int nodo){
+            int num_nodos = getNumeroNodosTotales();
+            double minimo = getDistancia(nodo,nodo);
             int posicion = nodo;
 
             for(int i=0;i<num_nodos;i++){
-                if(i!=nodo && ListaNodosDeCarga[i].getDisponible()){
+                if(i!=nodo && ListaNodosDeCarga.get(i).getDisponible()){
                     if(getDistancia(nodo,i)<minimo){
                         minimo = getDistancia(nodo,i);
                         posicion = i;
@@ -97,13 +95,13 @@ public class GrafoTabla {
             return posicion;
         }
 
-        int getMenorDistanciaCargaDisponible(int nodo){
-            int num_nodos = getNumeroNodos();
-            int minimo = matriz[nodo][nodo];
+    public int getMenorDistanciaDestinoDisponible(int nodo){
+            int num_nodos = getNumeroNodosTotales();
+            double minimo = getDistancia(nodo,nodo);
             int posicion = nodo;
 
             for(int i=0;i<num_nodos;i++){
-                if(i!=nodo && ListaNodosDeDestino[i].getDisponible()){
+                if(i!=nodo && ListaNodosDeDestino.get(i).getDisponible()){
                     if(getDistancia(nodo,i)<minimo){
                         minimo = getDistancia(nodo,i);
                         posicion = i;
@@ -117,22 +115,21 @@ public class GrafoTabla {
     /*
      * Sobre ListaNodo y numero_nodos_totales
      */
-    public
-        void addNodo(NodoTabla Nodo){
+    public void addNodo(MyNodo Nodo){
             ListaNodos.add(Nodo);
             numero_nodos_totales++;
             numero_disponibles_totales++;
         }
 
-        ArrayList getArray(){
+    public ArrayList<MyNodo> getArray(){
             return ListaNodos;
         }
 
-        int ArraySize(){
+    public int ArraySize(){
             return ListaNodos.size();
         }
 
-        void mostrarNodos(){
+    public void mostrarNodos(){
             int n = ListaNodos.size();
             for(int i =0; i<n; i++){
                 System.out.print(i +": ");
@@ -140,123 +137,122 @@ public class GrafoTabla {
             }
         }
 
-        void setNumeroNodosTotales(int num){
+    public void setNumeroNodosTotales(int num){
             numero_nodos_totales = num;
         }
 
-        int getNumeroNodosTotales(){
+    public int getNumeroNodosTotales(){
             return numero_nodos_totales;
         }
 
-        void setNumeroDisponiblesTotales(int num){
+    public void setNumeroDisponiblesTotales(int num){
             numero_disponibles_totales = num;
         }
 
-        int getNumeroDisponiblesTotales(){
+    public int getNumeroDisponiblesTotales(){
             return numero_disponibles_totales;
         }
 
-        void setDisponibilidadNodo(int posicion){
-            ListaNodos[posicion].setDisponible(false);
+    public void setDisponibilidadNodo(int posicion){
+            ListaNodos.get(posicion).setDisponible(false);
             setNumeroDisponiblesTotales(getNumeroDisponiblesTotales()-1);
             //faltan los otros dos
-            if(ListaNodosDeCarga.contains(ListaNodos[posicion])){
-                setDisponibilidadNodoCarga(ListaNodosDeCarga.indexOf(ListaNodos[i]));
+            if(ListaNodosDeCarga.contains(ListaNodos.get(posicion))){
+                setDisponibilidadNodoCarga(ListaNodos.get(posicion).getPosicion());
             }
 
-            if(ListaNodosDeDestino.contains(ListaNodos[posicion])){
-                setDisponibilidadNodoDestino(ListaNodosDeCarga.indexOf(ListaNodos[i]));
+            if(ListaNodosDeDestino.contains(ListaNodos.get(posicion))){
+                setDisponibilidadNodoDestino(ListaNodos.get(posicion).getPosicion());
             }
         }
 
-        bool getDisponibilidadNodo(int posicion){
-            return ListaNodos[posicion].getDisponible();
+    public boolean getDisponibilidadNodo(int posicion){
+            return ListaNodos.get(posicion).getDisponible();
         }
 
     /*
      * Sobre ListaNodosDeCarga y numero_nodos_carga
      */
-    public
-        void addNodoCarga(){
-            ListaNodosDeCarga.add(Nodo);
-            numero_nodos_carga++;
-            numero_disponibles_carga++;
-        }
+    public void addNodoCarga(MyNodo Nodo){
+        ListaNodosDeCarga.add(Nodo);
+        numero_nodos_carga++;
+        numero_disponibles_carga++;
+    }
 
-        ArrayList getArrayCarga(){
-            return ListaNodosDeCarga;
-        }
+    public ArrayList getArrayCarga(){
+        return ListaNodosDeCarga;
+    }
 
-        void setNumeroNodosCarga(int num){
-            numero_nodos_carga = num;
-        }
+    public void setNumeroNodosCarga(int num){
+        numero_nodos_carga = num;
+    }
 
-        int getNumeroNodosCarga(){
-            return numero_nodos_carga;
-        }
+    public int getNumeroNodosCarga(){
+        return numero_nodos_carga;
+    }
 
-        void setNumeroDisponiblesCarga(int num){
-            numero_disponibles_carga = num;
-        }
+    public void setNumeroDisponiblesCarga(int num){
+        numero_disponibles_carga = num;
+    }
 
-        int getNumeroDisponiblesCarga(){
-            return numero_disponibles_carga;
-        }
+    public int getNumeroDisponiblesCarga(){
+        return numero_disponibles_carga;
+    }
 
-        void setDisponibilidadNodoCarga(int posicion){
-            ListaNodosDeCarga[posicion].setDisponible(false);
-            setNumeroDisponiblesCarga(getNumeroDisponiblesCarga()-1);
-        }
+    public void setDisponibilidadNodoCarga(int posicion){
+        ListaNodosDeCarga.get(posicion).setDisponible(false);
+        setNumeroDisponiblesCarga(getNumeroDisponiblesCarga()-1);
+    }
 
     /*
      * Sobre ListaNodosDeDestino y numero_nodos_destino
      */
-    public
-        void addNodoDestino(){
-            ListaNodosDeDestino.add(Nodo);
-            numero_nodos_destino++;
-            numero_disponibles_destino++;
-        }
+    
+    public void addNodoDestino(MyNodo Nodo){
+        ListaNodosDeDestino.add(Nodo);
+        numero_nodos_destino++;
+        numero_disponibles_destino++;
+    }
 
-        ArrayList getArrayDestino(){
-            return ListaNodosDeDestino;
-        }
+    public ArrayList getArrayDestino(){
+        return ListaNodosDeDestino;
+    }
 
-        void setNumeroNodosDestino(int num){
-            numero_nodos_destino = num;
-        }
+    public void setNumeroNodosDestino(int num){
+        numero_nodos_destino = num;
+    }
 
-        int getNumeroNodosDestino(){
-            return numero_nodos_destino;
-        }
+    public int getNumeroNodosDestino(){
+        return numero_nodos_destino;
+    }
 
-        void setNumeroDisponiblesDestino(int num){
-            numero_disponibles_destino = num;
-        }
+    public void setNumeroDisponiblesDestino(int num){
+        numero_disponibles_destino = num;
+    }
 
-        int getNumeroDisponiblesDestino(){
-            return numero_disponibles_destino;
-        }
+    public int getNumeroDisponiblesDestino(){
+        return numero_disponibles_destino;
+    }
 
-        void setDisponibilidadNodoDestino(int posicion){
-            ListaNodosDeDestino[posicion].setDisponible(false);
-            setNumeroDisponiblesDestino(getNumeroDisponiblesDestino()-1);
-        }
+    public void setDisponibilidadNodoDestino(int posicion){
+        ListaNodosDeDestino.get(posicion).setDisponible(false);
+        setNumeroDisponiblesDestino(getNumeroDisponiblesDestino()-1);
+    }
         
     /*
      * Sobre la matriz de distancia
      */
-    public
-        double [][] getMatriz(){
-            return matriz;
-        }
+    
+    public double [][] getMatriz(){
+        return matriz;
+    }
 
-        void setDistancia(int nodo_1, int nodo_2, int distancia){
-            matriz[nodo_1][nodo_2] = distancia;
-            matriz[nodo_2][nodo_1] = distancia;
-        }
+    public void setDistancia(int nodo_1, int nodo_2, int distancia){
+        matriz[nodo_1][nodo_2] = distancia;
+        matriz[nodo_2][nodo_1] = distancia;
+    }
 
-        double getDistancia(int nodo_1, int nodo_2){
-            return matriz[nodo_1][nodo_2];
-        }
+    public double getDistancia(int nodo_1, int nodo_2){
+        return matriz[nodo_1][nodo_2];
+    }
 }
