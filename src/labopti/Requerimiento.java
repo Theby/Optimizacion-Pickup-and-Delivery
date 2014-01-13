@@ -17,7 +17,7 @@ public class Requerimiento {
     int tiempoFinalEntrega;
     
     
-    Requerimiento(int ic, int ice, int tic, int tfc, int tie, int tfe){
+    Requerimiento(MyNodo ic, MyNodo ice, int tic, int tfc, int tie, int tfe){
         NodoInicial = ic;
         NodoDestino = ice;
         tiempoInicialCarga = tic;

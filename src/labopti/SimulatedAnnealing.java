@@ -21,8 +21,8 @@ public class SimulatedAnnealing{
 			int num_camiones = camiones.size();
 			int ult_req;
 
-			while(grafico.getDisponibilidadNodo()>0){
-				for(int i=0;i<camiones;i++){
+			while(grafico.setNumeroDisponiblesCarga()>0){
+				for(int i=0;i<num_camiones;i++){
 					ult_req = camiones[i].getRequerimientos().back();
 					posicion = grafico.getMenorDistanciaDisponible(ult_req);
 					if(posicion != ult_req){
