@@ -117,9 +117,7 @@ public static void setSolucionVecina(GrafoTabla Grafico, ArrayList<Camion> Camio
 }
 
 public static int heuristica(GrafoTabla grafico, ArrayList<Camion> camiones){
-    //valor inicial alto para t
-    //coste_solucion_inicial elegida arbitrariamente
-    //ArrayList<NodoTabla> Tabla = grafico.getArray();
+    
 
     return 0;
 }

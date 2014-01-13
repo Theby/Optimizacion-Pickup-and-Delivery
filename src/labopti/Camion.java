@@ -238,18 +238,31 @@ public class Camion{
         public void ordenarListaRequerimientos(GrafoTabla Grafico){
             ArrayList <Requerimiento> ListaAuxiliar = new ArrayList();
             int nodo_aux = 0;
+            
             double distancia_ref;
             double distancia;
             
-            distancia = Grafico.getDistancia(0, this.getListaRequerimientos().get(0).getNodoInicial().getPosicion());
+            ArrayList <Integer> añadido = new ArrayList();
+            int posicion = nodo_aux;
             
-            for(int i=0;i<this.getListaRequerimientosSize();i++){
-                distancia_ref = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos().get(i).getNodoInicial().getPosicion());
-                if(distancia>distancia_ref){
-                    distancia = distancia_ref;
-                }                           
+            //distancia = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos().get(0).getNodoInicial().getPosicion());
+            distancia = 100000000;
+            
+            for(int j=0;j<this.getListaRequerimientosSize();j++){
+                for(int i=0;i<this.getListaRequerimientosSize();i++){
+                    distancia_ref = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos().get(i).getNodoInicial().getPosicion());
+                    if(distancia>distancia_ref && !añadido.contains(i)){
+                        distancia = distancia_ref;
+                        posicion = i;
+                    }                           
+                }
+
+                añadido.add(posicion);
+                ListaAuxiliar.add(this.ListaRequerimientos.get(posicion));
+                nodo_aux = this.ListaRequerimientos.get(posicion).getNodoDestino().getPosicion();
             }
             
+            this.ListaRequerimientos = ListaAuxiliar;
         }
 
 }
