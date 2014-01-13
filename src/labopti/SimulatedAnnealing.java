@@ -15,21 +15,38 @@ public class SimulatedAnnealing{
 		int coste_solucion_inicial;
 
 	public
-		static void setRequerimientos(GrafoTabla grafico, ArrayList <Requerimiento> requerimientos, ArrayList <Camion> camiones){
-			double [][] matriz = grafico.getMatriz();
+		static void setRequerimientos(GrafoTabla Grafico, ArrayList <Requerimiento> ListaRequerimientos, ArrayList <Camion> Camiones){
+			int nodo_carga_aux=0;
 			int posicion;
-			int num_camiones = camiones.size();
-			int ult_req;
 
-			while(grafico.setNumeroDisponiblesCarga()>0){
-				for(int i=0;i<num_camiones;i++){
-					ult_req = camiones[i].getRequerimientos().back();
-					posicion = grafico.getMenorDistanciaDisponible(ult_req);
-					if(posicion != ult_req){
-						camiones[i].setRequerimientos(posicion);
-						camiones[i].setDistanciaRequerimientos(ult_req,posicion);
-						grafico.setDisponibilidadNodo(posicion);
-					}					
+			while(Grafico.setNumeroDisponiblesCarga()>0){
+				for(int i=0;i<Camiones.size();i++){
+					//Obtiene el nodo de donde parte
+					nodo_carga_aux = Camiones.getDestinoUltimoRequerimiento();
+
+					//Busca un el punto de carga mas cercano al punto donde parte
+					posicion = Grafico.getMenorDistanciaCargaDisponible(nodo_carga_aux);
+
+					//Si la posicion es diferente significa que encontro un nuevo nodo
+					if(posicion != nodo_carga_aux){
+						//Obtiene el requerimiento que tiene como cargador, o nodo inicial, el indicado en la posicion
+						Requerimiento req_aux;
+						for(int j=0;j<ListaRequerimientos.size();j++){
+							if(ListaRequerimientos[j].getNodoInicial().getPosicion()==posicion){
+								req_aux = ListaRequerimientos[j];
+								break;
+							}							
+						}
+
+						//Agrega el requerimiento encontrado a la lista de requerimientos del camión
+						Camiones[i].setListaRequerimientos(req_aux);
+
+						//Obtiene la distancia del nodo inicial al nodo destino del requerimiento
+						Camiones[i].setDistanciaRequerimientos(Grafico.getDistancia(req_aux.getNodoInicial().getPosicion(),req_aux.getNodoDestino().getPosicion()));
+
+						//Asigna la disponibilidad correspondiente al nodo de cargador encontrado
+						Grafico.setDisponibilidadNodo(posicion);
+					}				
 				}
 			}
 		}
