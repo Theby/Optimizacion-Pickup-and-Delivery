@@ -1,11 +1,11 @@
 #Archivos usados por NetBeans
-/dist
-/build
-/nbproject
-/test
-build.xml
-manifest.mf
-*.xml
-*.mf
-*.class
-*.properties
+#/dist
+#/build
+#/nbproject
+#/test
+#build.xml
+#manifest.mf
+#*.xml
+#*.mf
+#*.class
+#*.properties
