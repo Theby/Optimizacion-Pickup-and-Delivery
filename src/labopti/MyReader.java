@@ -32,12 +32,15 @@ public class MyReader extends Reader{
         String[] auxS = Line.split(" ");
         numVehiculos = Integer.parseInt(auxS[0]);
         numNodos = Integer.parseInt(auxS[1]);
+        int posicion = 0;
         while(this.HasNextLine()){//Nodo 0 = nodo central.
             Line = this.readLine();
             auxS = Line.split(" ");
             if(auxS.length == 2){//Caso de linea con 2 valores.
                 MyNodo auxNodo = new MyNodo(Integer.parseInt(auxS[0]), Integer.parseInt(auxS[1])); //crear nodo.
+                auxNodo.setPosicion(posicion);
                 Grafo.addNodo(auxNodo); //agregar nodo.
+                posicion++;
             }
             else{
                 if(auxS.length == 6){//caso de linea con 6 valores.
