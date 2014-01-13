@@ -28,6 +28,7 @@ public class Camion{
 		int distancia_lista_requerimientos_size;
 
 		//Para guardar la distancia entre el nodo final de un requerimiento y el de comienzo de otro
+		//Usado para las rutas
 		ArrayList <int> ListaDistanciaCargador;
 		int lista_distancia_cargador_size;
 
@@ -167,11 +168,11 @@ public class Camion{
 			System.out.println("Requerimientos del Camnión "+getIdentificador()+":");
 			System.out.println("   Formato: Nodo -> (distancia) -> Nodo");
 			for(int i=0;i<lista_requerimientos_size;i++){
-				System.out.print("   "+getRequerimientos(i).NodoInicial);
+				System.out.print("   "+getRequerimientos(i).getNodoInicial());
 				System.out.print(" --> ");
 				System.out.print(" ("+getDistanciaRequerimientos(i)+") ");
 				System.out.print(" --> ");
-				System.out.println(""+getRequerimientos(i).NodoDestino);
+				System.out.println(""+getRequerimientos(i).getNodoDestino());
 			}
 		}
 
@@ -179,11 +180,11 @@ public class Camion{
 			System.out.println("Rutas del Camnión "+getIdentificador()+":");
 			System.out.println("   Formato: Requerimiento -> (distancia) -> Requerimiento");
 			for(int i=0;i<lista_distancia_cargador_size;i++){
-				System.out.print("   "+getRequerimientos(i).NodoDestino);
+				System.out.print("   "+getRequerimientos(i).getNodoDestino());
 				System.out.print(" --> ");
 				System.out.print(" ("+getDistanciaCargador(i)+") ");
 				System.out.print(" --> ");
-				System.out.println(""+getRequerimientos(i+1).NodoInicial);
+				System.out.println(""+getRequerimientos(i+1).getNodoInicial());
 			}
 		}
 
@@ -202,4 +203,22 @@ public class Camion{
 			swapDistanciaRequerimientos(pos_1,pos_2);
 			golosoRutas();
 		}
+
+		int getCargadorUltimoRequerimiento(){
+			if(lista_requerimientos_size>0){
+				return ListaRequerimientos[lista_requerimientos_size-1].getNodoInicial().getPosicion();
+			}else{
+				return 0;
+			}
+		}
+
+		int getDestinoUltimoRequerimiento(){
+			if(lista_requerimientos_size>0){
+				return ListaRequerimientos[lista_requerimientos_size-1].getNodoDestino().getPosicion();
+			}else{
+				return 0;
+			}
+		}
+
+
 }
