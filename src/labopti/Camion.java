@@ -14,7 +14,7 @@ public class Camion{
 	private int identificador;
 
 	//Para guardar numericamente la lista de requerimientos
-	private ArrayList <Requerimiento> ListaRequerimientos;
+	private ArrayList <Requerimiento> ListaRequerimientos = new ArrayList();
 	private int lista_requerimientos_size;
 
 	/*
@@ -22,7 +22,7 @@ public class Camion{
 	 * distancia_requerimientos[0] corresponderia a la distancia
 	 * entre los nodos de cada requerimiento
 	 */
-	private ArrayList <Double> ListaDistanciaRequerimientos;
+	private ArrayList <Double> ListaDistanciaRequerimientos = new ArrayList();
 	private int distancia_lista_requerimientos_size;
 
 	//Para guardar la distancia entre el nodo final de un requerimiento y el de comienzo de otro

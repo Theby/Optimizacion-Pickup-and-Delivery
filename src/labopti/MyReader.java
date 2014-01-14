@@ -30,12 +30,23 @@ public class MyReader extends Reader{
         ArrayList<Requerimiento> LReqAux = new ArrayList();
         ArrayList<Camion> LCamAux = new ArrayList();
         String Line = this.readLine();
+        Line = Line.replaceAll("	", " ");
+        Line = Line.replaceAll("  ", " ");
+        System.out.println(Line);
         String[] auxS = Line.split(" ");
-        numVehiculos = Integer.parseInt(auxS[0]);
-        numNodos = Integer.parseInt(auxS[1]);
+        if(auxS.length ==2){
+            numVehiculos = Integer.parseInt(auxS[0]);
+            numNodos = Integer.parseInt(auxS[1]);
+        }
+        else{
+            ErrorMessenger.ShowError(0);
+        }
         int posicion = 0;
         while(this.HasNextLine()){//Nodo 0 = nodo central.
             Line = this.readLine();
+            Line = Line.replaceAll("	", " ");
+            Line = Line.replaceAll("  ", " ");
+            System.out.println(Line);
             auxS = Line.split(" ");
             if(auxS.length == 2){//Caso de linea con 2 valores.
                 MyNodo auxNodo = new MyNodo(Integer.parseInt(auxS[0]), Integer.parseInt(auxS[1])); //crear nodo.

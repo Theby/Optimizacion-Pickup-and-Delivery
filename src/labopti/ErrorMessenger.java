@@ -17,6 +17,7 @@ public abstract class ErrorMessenger {
                 String message = "ERROR: Archivo de entrada con errores.";
                 System.out.println(message);
                 JOptionPane.showMessageDialog(null, message, "ERROR!", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
                 break;
             case 1:
                 break;
