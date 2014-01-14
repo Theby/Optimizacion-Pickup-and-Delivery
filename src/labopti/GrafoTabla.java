@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package labopti;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author Luis
+ * Es un grafo que tiene distintas listas de nodos, y una matriz que representa la distancia entre cada uno de estos.
+ * @author Luis y Esteban
  */
 public class GrafoTabla {
         private ArrayList<MyNodo> ListaNodos;
@@ -22,9 +18,11 @@ public class GrafoTabla {
         private int numero_disponibles_carga;
         private int numero_disponibles_destino;
    
-    /*
-     * Constructores, metodos funcionales y practicos
-     */ 
+     /// Constructores, métodos funcionales y practicos 
+        
+      /**
+       * Constructor: instancia los atributos de la clase con valores nulos y ceros.
+       */  
     public GrafoTabla(){
             ListaNodos = new ArrayList();
             ListaNodosDeCarga = new ArrayList();
@@ -37,6 +35,9 @@ public class GrafoTabla {
             numero_disponibles_destino = 0;
         }
 
+    /**
+     * Usa la lista de nodos, que tiene largo n, para generar una matriz de n x n, que representa la distancia entre cada nodo. 
+     */
     public void interconectar(){
             int n = ListaNodos.size();
             matriz = new double[n][n];
@@ -46,7 +47,10 @@ public class GrafoTabla {
                 }
             }
         }
-        
+    
+    /**
+     * Muestra por pantalla los valores de la tabla (Matriz) que representa las distnacias entre nodos.
+     */
     public void mostrarTabla(){
             int n = ListaNodos.size();
             for(int i=0; i<n; i++){
@@ -57,9 +61,11 @@ public class GrafoTabla {
             }
         }
 
-    /*
+    /**
      * El nodo pasado como argumento representa el nodo base desde el que se calcularan las distancias, es decir
      * Por ejemplo: getMenorDistancia(1) retorna el nodo más cercano al nodo 1.
+     * @param nodo Nodo para el cual buscar la menor distancia.
+     * @return menor distancia para ese nodo.
      */
     public int getMenorDistanciaTotalDisponible(int nodo){
             int num_nodos = getNumeroNodosTotales();
@@ -77,6 +83,7 @@ public class GrafoTabla {
 
             return posicion;
         }
+    
 
     public int getMenorDistanciaCargaDisponible(int nodo){
             double minimo = 100000;
@@ -111,23 +118,35 @@ public class GrafoTabla {
             return posicion;
         }
 
-    /*
-     * Sobre ListaNodo y numero_nodos_totales
+    /**
+     * Agrega un nodo a ListaNodos.
+     * @param Nodo Nodo a agregar.
      */
     public void addNodo(MyNodo Nodo){
             ListaNodos.add(Nodo);
             numero_nodos_totales++;
             numero_disponibles_totales++;
         }
-
+    
+    /**
+     * retorna ListaNodos.
+     * @return ListaNodos.
+     */
     public ArrayList<MyNodo> getArray(){
             return ListaNodos;
         }
-
+    
+    /**
+     * Retorna el tamaño de ListaNodos.
+     * @return ListaNodos.size();
+     */
     public int ArraySize(){
             return ListaNodos.size();
         }
-
+    
+    /**
+     * Muestra todos los nodos de ListaNodos.
+     */
     public void mostrarNodos(){
             int n = ListaNodos.size();
             for(int i =0; i<n; i++){
@@ -135,7 +154,10 @@ public class GrafoTabla {
                 ListaNodos.get(i).mostrar();
             }
         }
-
+    
+    /**
+     * Muestra todos los nodos de ListaNodosDeCarga.
+     */
     public void MostrarListaNodosCarga(){
         int n = ListaNodosDeCarga.size();
         for(int i=0;i<n;i++){
@@ -144,14 +166,23 @@ public class GrafoTabla {
         }
     }
     
+    /**
+     * Setea el número de nodos totales.
+     * @param num número de nodos totales.
+     */
     public void setNumeroNodosTotales(int num){
             numero_nodos_totales = num;
         }
-
+    
+    /**
+     * Retorna número de nodos.
+     * @return numero_nodos_totales.
+     */
     public int getNumeroNodosTotales(){
             return numero_nodos_totales;
         }
 
+    
     public void setNumeroDisponiblesTotales(int num){
             numero_disponibles_totales = num;
         }

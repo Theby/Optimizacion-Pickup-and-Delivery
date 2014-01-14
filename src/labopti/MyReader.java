@@ -7,8 +7,8 @@ package labopti;
 import java.util.ArrayList;
 
 /**
- *
- * @author Luis
+ * Es una extensión de la clase Reader, implementa métodos especificos para analizar el formato de la entrada de este programa.
+ * @author Luis y Esteban
  */
 public class MyReader extends Reader{
     int numVehiculos;
@@ -17,14 +17,31 @@ public class MyReader extends Reader{
     ArrayList<Requerimiento> LReq;
     ArrayList<Camion> Vehiculos;
     
+    /**
+     * Implementa el constructor de la clase superior.
+     * Crea un lector de archivos para el archivo indicado en la ruta path.
+     * @param path ruta del archivo a leer.
+     * @throws Exception en caso de no poder crear el lector.
+     */
     MyReader(String path) throws Exception{
         super(path);
     }
     
+    /**
+     * Implementa el constructor de la clase superior.
+     * Crea u JFileChooser para seleccionar un archivo y luego crea un lector de archivo para este.
+     * @throws Exception en caso de no poder crear el lector.
+     */
     MyReader() throws Exception{
         super();
     }
     
+    /**
+     * Analiza el archivo de entrada.
+     * Obtiene el número de nodos, número de camiones y su lista,
+     * la lista de nodos con sus coordenadas y la lista de requerimientos.
+     * @return GrafoTabla con los nodos en la ListaNodos y la matriz de distancias ya creada.
+     */
     public GrafoTabla AnalisarArchivo(){
         GrafoTabla Grafo = new GrafoTabla();
         ArrayList<Requerimiento> LReqAux = new ArrayList();

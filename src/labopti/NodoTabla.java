@@ -5,12 +5,14 @@
 package labopti;
 
 /**
- *
- * @author Luis
+ * Esquema que deben cumplir los nodos pertenecientes a un GrafoTabla
+ * @author Luis y Esteban
  */
 public abstract class NodoTabla {
 
-    public 
-        abstract void mostrar();
+    /**
+     * Muestra el nodo. (Debe ser implementado).
+     */
+    public abstract void mostrar();
 
 }

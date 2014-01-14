@@ -1,16 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package labopti;
 
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Luis
+ * Se encarga de manejar errores y mostrarlos usando JOptionPane
+ * @author Luis y Esteban
  */
 public abstract class ErrorMessenger {
+    
+    /**
+     * Muestra los distintos errores que puede tener el programa usando JOptionPane
+     * @param e número del error.
+     */
     static void ShowError(int e){
         switch(e){
             case 0://Archivo de entrada con errores.

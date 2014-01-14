@@ -76,11 +76,19 @@ public class Reader {
     public void close(){
         sc.close();
     }
-
+    
+    /**
+     * Obtiene la dirección del archivo.
+     * @return dirección del archivo.
+     */
     public String get_path(){
         return path;
     }
     
+    /**
+     * Retorna el archivo como objeto.
+     * @return el archivo como objeto File.
+     */
     public File get_file(){
         return archivo;
     }
