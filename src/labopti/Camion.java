@@ -188,7 +188,7 @@ public class Camion{
 		}
 	}
 
-	public int getDistanciaTotal(){
+	public int getDistanciaTotalRequerimientos(){
 		int total=0;
 
 		for(int i=0;i<distancia_lista_requerimientos_size;i++){
@@ -263,6 +263,16 @@ public class Camion{
             }
             
             this.ListaRequerimientos = ListaAuxiliar;
+        }
+        
+        public double getResultado(){
+            double total = this.getDistanciaTotalRequerimientos();
+            
+            for(int i=0;i<this.getDistanciaCargadorSize();i++){                
+                total += this.getDistanciaCargador(i);
+            }
+            
+            return total;
         }
 
 }
