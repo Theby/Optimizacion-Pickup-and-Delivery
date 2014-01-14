@@ -52,7 +52,7 @@ public class MyNodo extends NodoTabla{
     
     @Override
     public void mostrar(){
-            System.out.println("[x,y]=[" + coordX + ", " + coordY +"]");
+            System.out.println("(Pos)[x,y]=("+posicion+")[" + coordX + ", " + coordY +"]");
         }
     
     public double distancia(MyNodo Nodo){

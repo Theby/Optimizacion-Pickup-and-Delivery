@@ -26,14 +26,14 @@ public class LabOpti {
             Camiones = myreader.Vehiculos;
             
             G.mostrarNodos();
-            G.mostrarTabla();
+            //G.mostrarTabla();
             
             SimulatedAnnealing.setRequerimientos(G, LReq, Camiones);
             SimulatedAnnealing.setRutas(G, Camiones);
             
             for(int i=0;i<Camiones.size();i++){
                 Camiones.get(i).mostrarRequerimientos();
-                Camiones.get(i).mostrarRutas();
+                //Camiones.get(i).mostrarRutas();
             }
             
             System.out.println("FIN");

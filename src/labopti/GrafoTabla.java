@@ -79,15 +79,14 @@ public class GrafoTabla {
         }
 
     public int getMenorDistanciaCargaDisponible(int nodo){
-            int num_nodos = getNumeroNodosTotales();
-            double minimo = getDistancia(nodo,nodo);
+            double minimo = 100000;
             int posicion = nodo;
-
-            for(int i=0;i<num_nodos;i++){
-                if(i!=nodo && ListaNodosDeCarga.get(i).getDisponible()){
-                    if(getDistancia(nodo,i)<minimo){
-                        minimo = getDistancia(nodo,i);
-                        posicion = i;
+        
+            for(int i=0;i<this.getNumeroNodosCarga();i++){
+                if(i!=nodo && this.ListaNodosDeCarga.get(i).getDisponible()){
+                    if(this.getDistancia(nodo,this.ListaNodosDeCarga.get(i).getPosicion())<minimo){
+                        minimo = this.getDistancia(nodo,this.ListaNodosDeCarga.get(i).getPosicion());
+                        posicion = this.ListaNodosDeCarga.get(i).getPosicion();
                     }
                 }
             }
@@ -137,6 +136,14 @@ public class GrafoTabla {
             }
         }
 
+    public void MostrarListaNodosCarga(){
+        int n = ListaNodosDeCarga.size();
+        for(int i=0;i<n;i++){
+            System.out.print(i+": ");
+            ListaNodosDeCarga.get(i).mostrar();
+        }
+    }
+    
     public void setNumeroNodosTotales(int num){
             numero_nodos_totales = num;
         }
@@ -154,15 +161,15 @@ public class GrafoTabla {
         }
 
     public void setDisponibilidadNodo(int posicion){
-            ListaNodos.get(posicion).setDisponible(false);
-            setNumeroDisponiblesTotales(getNumeroDisponiblesTotales()-1);
-            //faltan los otros dos
-            if(ListaNodosDeCarga.contains(ListaNodos.get(posicion))){
-                setDisponibilidadNodoCarga(ListaNodos.get(posicion).getPosicion());
+            this.ListaNodos.get(posicion).setDisponible(false);
+            this.setNumeroDisponiblesTotales(this.getNumeroDisponiblesTotales()-1);
+            
+            if(this.ListaNodosDeCarga.contains(this.ListaNodos.get(posicion))){
+                this.setDisponibilidadNodoCarga(this.ListaNodosDeCarga.indexOf(this.ListaNodos.get(posicion)));
             }
 
-            if(ListaNodosDeDestino.contains(ListaNodos.get(posicion))){
-                setDisponibilidadNodoDestino(ListaNodos.get(posicion).getPosicion());
+            if(this.ListaNodosDeDestino.contains(this.ListaNodos.get(posicion))){
+                this.setDisponibilidadNodoDestino(this.ListaNodosDeCarga.indexOf(this.ListaNodos.get(posicion)));
             }
         }
 
@@ -184,24 +191,24 @@ public class GrafoTabla {
     }
 
     public void setNumeroNodosCarga(int num){
-        numero_nodos_carga = num;
+        this.numero_nodos_carga = num;
     }
 
     public int getNumeroNodosCarga(){
-        return numero_nodos_carga;
+        return this.numero_nodos_carga;
     }
 
     public void setNumeroDisponiblesCarga(int num){
-        numero_disponibles_carga = num;
+        this.numero_disponibles_carga = num;
     }
 
     public int getNumeroDisponiblesCarga(){
-        return numero_disponibles_carga;
+        return this.numero_disponibles_carga;
     }
 
     public void setDisponibilidadNodoCarga(int posicion){
-        ListaNodosDeCarga.get(posicion).setDisponible(false);
-        setNumeroDisponiblesCarga(getNumeroDisponiblesCarga()-1);
+        this.ListaNodosDeCarga.get(posicion).setDisponible(false);
+        this.setNumeroDisponiblesCarga(this.getNumeroDisponiblesCarga()-1);
     }
 
     /*
@@ -235,8 +242,8 @@ public class GrafoTabla {
     }
 
     public void setDisponibilidadNodoDestino(int posicion){
-        ListaNodosDeDestino.get(posicion).setDisponible(false);
-        setNumeroDisponiblesDestino(getNumeroDisponiblesDestino()-1);
+        this.ListaNodosDeDestino.get(posicion).setDisponible(false);
+        this.setNumeroDisponiblesDestino(this.getNumeroDisponiblesDestino()-1);
     }
         
     /*
@@ -253,6 +260,6 @@ public class GrafoTabla {
     }
 
     public double getDistancia(int nodo_1, int nodo_2){
-        return matriz[nodo_1][nodo_2];
+        return this.matriz[nodo_1][nodo_2];
     }
 }
