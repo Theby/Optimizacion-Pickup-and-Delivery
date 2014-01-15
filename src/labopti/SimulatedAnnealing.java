@@ -1,18 +1,34 @@
 /*
- * 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package labopti;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.math.*;
 
 /**
  *
+ * @author Luis y Esteban Gaete
+ */
+
+
+/**
+ * Esta clase contiene metodos estaticos para las funcionalidades más importantes
+ * de la metaheúristica
  * @author Esteban
  */
 public class SimulatedAnnealing{
     
+    /**
+     * Asigna la lista de requerimientos a los camiones según que tan cercan
+     * esten de un requerimiento, luego avanza al nodo destino de ese
+     * requerimiento y vuelve a calcular cual requerimiento le queda más cerca
+     * hasta que no hay mas requerimientos. Esto lo hace cada camion mediante Round Robin
+     * @param Grafico Grafico que tiene todos los nodos y distancias entre ellos
+     * @param ListaRequerimientos Todos los requerimientos del problema
+     * @param Camiones Lista completa de camiones
+     */
     public static void setRequerimientos(GrafoTabla Grafico, ArrayList <Requerimiento> ListaRequerimientos, ArrayList <Camion> Camiones){
         int nodo_carga_aux;
         int posicion;
@@ -50,6 +66,11 @@ public class SimulatedAnnealing{
         }
     }
 
+    /**
+     * Crea las rutas para cada camion segun sus requerimientos
+     * @param Grafico Grafico que tiene todos los nodos y distancias entre ellos
+     * @param Camiones Lista completa de camiones
+     */
     public static void setRutas(GrafoTabla Grafico, ArrayList <Camion> Camiones){
         int pos_nodo_aux = 0;
         
@@ -63,6 +84,11 @@ public class SimulatedAnnealing{
         }
     }
 
+    /**
+     * Crea las rutas para un camion segun sus requerimientos
+     * @param Grafico Grafico que tiene todos los nodos y distancias entre ellos
+     * @param camiones camion al que se le asignaran las rutas
+     */
     public static void setRutas(GrafoTabla Grafico, Camion camiones){
         int pos_nodo_aux = 0;
 
@@ -72,52 +98,12 @@ public class SimulatedAnnealing{
         }
     }
 
-    public static void setSolucionVecina(GrafoTabla Grafico, ArrayList<Camion> Camiones){
-        Random random = new Random();    
-        int camion_ran_1 = random.nextInt()%Camiones.size();
-        int camion_ran_2 = random.nextInt()%Camiones.size();
-
-        while(camion_ran_1==camion_ran_2){
-            camion_ran_2 = random.nextInt()%Camiones.size();
-        }
-
-        int prob = random.nextInt()%100;
-
-        //Pasar un requerimiento a otro
-        if(Camiones.get(camion_ran_1).getListaRequerimientosSize()!=Camiones.get(camion_ran_2).getListaRequerimientosSize() || prob<50){
-            //Para asegurarse que el camion_ran_1 es el que tiene mÃ¡s requerimientos
-            if(Camiones.get(camion_ran_1).getListaRequerimientosSize()<Camiones.get(camion_ran_2).getListaRequerimientosSize()){
-                int aux = camion_ran_1;
-                camion_ran_1 = camion_ran_2;
-                camion_ran_2 = aux;
-            }
-
-            //AÃ±ade al 2 el requerimiento exedente del 1
-            Camiones.get(camion_ran_2).setListaRequerimientos(Camiones.get(camion_ran_1).getListaRequerimientos().get(Camiones.get(camion_ran_1).getListaRequerimientosSize()-1));
-
-            //Borra el requerimiento del 1
-            Camiones.get(camion_ran_1).getListaRequerimientos().remove(Camiones.get(camion_ran_1).getListaRequerimientosSize()-1);
-
-        //Intercambia un requerimiento con otro
-        }else{
-            int req_ran_1 = random.nextInt()%Camiones.get(camion_ran_1).getListaRequerimientosSize();
-            int req_ran_2 = random.nextInt()%Camiones.get(camion_ran_2).getListaRequerimientosSize();
-
-            Requerimiento req_auxiliar = Camiones.get(camion_ran_1).getListaRequerimientos(req_ran_1);
-
-            Camiones.get(camion_ran_1).getListaRequerimientos().set(req_ran_1, Camiones.get(camion_ran_2).getListaRequerimientos(req_ran_2));
-            Camiones.get(camion_ran_2).getListaRequerimientos().set(req_ran_2,req_auxiliar);
-        }
-
-        //Ordena los nuevos requerimientos y vuelve a calcular las rutas
-        Camiones.get(camion_ran_1).ordenarListaRequerimientos(Grafico);
-        Camiones.get(camion_ran_1).clearListaDistanciaCargador();
-        setRutas(Grafico, Camiones.get(camion_ran_1));
-        Camiones.get(camion_ran_2).ordenarListaRequerimientos(Grafico);
-        Camiones.get(camion_ran_2).clearListaDistanciaCargador();
-        setRutas(Grafico, Camiones.get(camion_ran_2));
-    }
-
+    /**
+     * Obtiene una solucion vecina a partir de la solucion actual
+     * @param Grafico Grafico que tiene todos los nodos y distancias entre ellos
+     * @param Camiones Lista completa de camiones
+     * @return ArrayList<Camion> con la nueva solucion
+     */
     public static ArrayList<Camion> getSolucionVecina(GrafoTabla Grafico,ArrayList<Camion> Camiones){
         ArrayList<Camion> CamionesVecinos = Camiones;
         Random random = new Random();    
@@ -183,6 +169,12 @@ public class SimulatedAnnealing{
         return CamionesVecinos;
     }
 
+    /**
+     * Realiza la heuristica Simulated Annealing
+     * @param Grafico Grafico que tiene todos los nodos y distancias entre ellos
+     * @param Camiones Lista completa de camiones
+     * @return Lista con la solucion cercana al optimo
+     */
     public static ArrayList<Camion> heuristica(GrafoTabla Grafico, ArrayList<Camion> Camiones){
         ArrayList<Camion> Solucion = Camiones;
         ArrayList<Camion> SolucionVecina = new ArrayList();
@@ -212,6 +204,11 @@ public class SimulatedAnnealing{
         return Solucion;
     }
 
+    /**
+     * Realiza la suma de los valores para obtener el resultado de la funcion objetivo
+     * @param Camiones Lista completa de camiones
+     * @return Valor resultante
+     */
     public static double getResultadoFuncionObjetivo(ArrayList<Camion> Camiones){
         double solucion = 0;
 

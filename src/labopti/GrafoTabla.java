@@ -88,7 +88,13 @@ public class GrafoTabla {
             return posicion;
         }
     
-
+    /**
+     * El nodo pasado como argumento representa el nodo base desde el que se calcularan las distancias, es decir
+     * Por ejemplo: getMenorDistancia(1) retorna el nodo más cercano al nodo 1, siempre y cuando
+     * este nodo sea de carga y este disponible
+     * @param nodo Nodo para el cual buscar la menor distancia.
+     * @return menor distancia para ese nodo.
+     */
     public int getMenorDistanciaCargaDisponible(int nodo){
             double minimo = 100000;
             int posicion = nodo;
@@ -105,6 +111,13 @@ public class GrafoTabla {
             return posicion;
         }
 
+    /**
+     * El nodo pasado como argumento representa el nodo base desde el que se calcularan las distancias, es decir
+     * Por ejemplo: getMenorDistancia(1) retorna el nodo más cercano al nodo 1, siempre y cuando
+     * este nodo sea de destino y este disponible
+     * @param nodo Nodo para el cual buscar la menor distancia.
+     * @return menor distancia para ese nodo.
+     */
     public int getMenorDistanciaDestinoDisponible(int nodo){
             int num_nodos = getNumeroNodosTotales();
             double minimo = getDistancia(nodo,nodo);
@@ -186,15 +199,27 @@ public class GrafoTabla {
             return numero_nodos_totales;
         }
 
-    
+    /**
+     * Asigna el valor de nodos totales disponibles
+     * @param num valor a asignar
+     */
     public void setNumeroDisponiblesTotales(int num){
             numero_disponibles_totales = num;
-        }
-
+    }
+    
+    /**
+     * Obtiene el numero de nodos disponibles totales
+     * @return numero de nodos
+     */
     public int getNumeroDisponiblesTotales(){
             return numero_disponibles_totales;
         }
 
+    /**
+     * Asigna la disponibilidad del nodo dado a false y todos sus representantes
+     * en cargador y destino
+     * @param posicion posicion del nodo a asignar
+     */
     public void setDisponibilidadNodo(int posicion){
             this.ListaNodos.get(posicion).setDisponible(false);
             this.setNumeroDisponiblesTotales(this.getNumeroDisponiblesTotales()-1);
@@ -208,12 +233,18 @@ public class GrafoTabla {
             }
         }
 
+    /**
+     * Obtiene la disponibilidad del nodo enunciado
+     * @param posicion posicion del nodo
+     * @return disponibilidad del nodo
+     */
     public boolean getDisponibilidadNodo(int posicion){
             return ListaNodos.get(posicion).getDisponible();
         }
 
-    /*
-     * Sobre ListaNodosDeCarga y numero_nodos_carga
+    /**
+     * añade un nodo a la lista de cargador
+     * @param Nodo nodo a asignar
      */
     public void addNodoCarga(MyNodo Nodo){
         ListaNodosDeCarga.add(Nodo);
@@ -221,26 +252,50 @@ public class GrafoTabla {
         numero_disponibles_carga++;
     }
 
+    /**
+     * obtiene la lista de nodos de carga
+     * @return ArrayList
+     */
     public ArrayList getArrayCarga(){
         return ListaNodosDeCarga;
     }
 
+    /**
+     * Asigna la cantidad de nodos de carga
+     * @param num valor a asignar
+     */
     public void setNumeroNodosCarga(int num){
         this.numero_nodos_carga = num;
     }
 
+    /**
+     * Obtiene la cantidad de nodos
+     * @return valor
+     */
     public int getNumeroNodosCarga(){
         return this.numero_nodos_carga;
     }
 
+    /**
+     * Asigna el numero de nodos cargador aun disponible
+     * @param num valor
+     */
     public void setNumeroDisponiblesCarga(int num){
         this.numero_disponibles_carga = num;
     }
 
+    /**
+     * Obtiene el numero de nodos de carga disponible
+     * @return cantidad de nodos
+     */
     public int getNumeroDisponiblesCarga(){
         return this.numero_disponibles_carga;
     }
 
+    /**
+     * Asigna la disponibilidad de los nodos de carga
+     * @param posicion nodo a asignar
+     */
     public void setDisponibilidadNodoCarga(int posicion){
         this.ListaNodosDeCarga.get(posicion).setDisponible(false);
         this.setNumeroDisponiblesCarga(this.getNumeroDisponiblesCarga()-1);
@@ -250,50 +305,91 @@ public class GrafoTabla {
      * Sobre ListaNodosDeDestino y numero_nodos_destino
      */
     
+    /**
+     * Añadir nodo de destino a la lista de nodos de destino
+     * @param Nodo nodo a asignar
+     */
     public void addNodoDestino(MyNodo Nodo){
         ListaNodosDeDestino.add(Nodo);
         numero_nodos_destino++;
         numero_disponibles_destino++;
     }
 
+    /**
+     * Obtiene el array con los nodos de destino
+     * @return ArrayList
+     */
     public ArrayList getArrayDestino(){
         return ListaNodosDeDestino;
     }
 
+    /**
+     * Asigna la cantidad de ndoos de destino
+     * @param num valor
+     */
     public void setNumeroNodosDestino(int num){
         numero_nodos_destino = num;
     }
 
+    /**
+     * Obtiene la cantidad de nodos de destino
+     * @return valor
+     */
     public int getNumeroNodosDestino(){
         return numero_nodos_destino;
     }
 
+    /**
+     * Asigna la cantidad de nodos de destino disponibles
+     * @param num valor
+     */
     public void setNumeroDisponiblesDestino(int num){
         numero_disponibles_destino = num;
     }
 
+    /**
+     * Obtiene la catidad de nodos de destino aun disponibles
+     * @return valor
+     */
     public int getNumeroDisponiblesDestino(){
         return numero_disponibles_destino;
     }
 
+    /**
+     * Asigna la disponibilidad del nodo de destino a false
+     * @param posicion posicion del nodo a asignar
+     */
     public void setDisponibilidadNodoDestino(int posicion){
         this.ListaNodosDeDestino.get(posicion).setDisponible(false);
         this.setNumeroDisponiblesDestino(this.getNumeroDisponiblesDestino()-1);
     }
         
-    /*
-     * Sobre la matriz de distancia
-     */
-    
+    /**
+     * Obtiene la matriz con todas las distancias e interconeccinoes de los nodos
+     * @return double [][]
+     */    
     public double [][] getMatriz(){
         return matriz;
     }
 
+    /**
+     * Asigna la distancia a la matriz en la posicion dada y e su homologo ya
+     * que es una matriz diagonal
+     * @param nodo_1 posicion 1
+     * @param nodo_2 posicion 2
+     * @param distancia distancia entre 1 y 2
+     */
     public void setDistancia(int nodo_1, int nodo_2, double distancia){
         matriz[nodo_1][nodo_2] = distancia;
         matriz[nodo_2][nodo_1] = distancia;
     }
 
+    /**
+     * Obtiene la distancia entre 1 y 2
+     * @param nodo_1 posicion 1
+     * @param nodo_2 posicion 2
+     * @return distancia
+     */
     public double getDistancia(int nodo_1, int nodo_2){
         return this.matriz[nodo_1][nodo_2];
     }

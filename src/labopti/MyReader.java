@@ -12,8 +12,7 @@ import java.util.ArrayList;
  */
 public class MyReader extends Reader{
     int numVehiculos;
-    int numNodos;
-    
+    int numNodos;    
     ArrayList<Requerimiento> LReq;
     ArrayList<Camion> Vehiculos;
     

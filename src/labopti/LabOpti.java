@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Luis
+ * @author Luis y Esteban Gaete
  */
 public class LabOpti {
 
@@ -20,6 +20,7 @@ public class LabOpti {
         ArrayList <Requerimiento> LReq;
         ArrayList <Camion> Camiones; 
         try{
+            //Lee el archivo
             MyReader myreader = new MyReader();
             G = myreader.AnalisarArchivo();
             LReq = myreader.LReq;
@@ -28,18 +29,20 @@ public class LabOpti {
             //G.mostrarNodos();
             //G.mostrarTabla();
             
+            //Realiza los ajustes para la heuristica
             SimulatedAnnealing.setRequerimientos(G, LReq, Camiones);
             SimulatedAnnealing.setRutas(G, Camiones);
             
-            
-            System.out.println("Comenzando heuristica");
+            //Realiza la heurstiica
             Camiones = SimulatedAnnealing.heuristica(G, Camiones);
             
+            //Muestra los valores
             for(int i=0;i<Camiones.size();i++){
                 Camiones.get(i).mostrarRequerimientos();
                 Camiones.get(i).mostrarRutas();
             }
             
+            //Muestra el resultado
             System.out.println("FIN: "+SimulatedAnnealing.getResultadoFuncionObjetivo(Camiones));
             
         }
