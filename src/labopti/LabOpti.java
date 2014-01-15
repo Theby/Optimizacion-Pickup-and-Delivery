@@ -34,8 +34,19 @@ public class LabOpti {
             SimulatedAnnealing.setRutas(G, Camiones);
             
             //Realiza la heurstiica
+            //System.out.println("Comenzando heuristica");
             Camiones = SimulatedAnnealing.heuristica(G, Camiones);
             
+            //Muestra los valores
+            /*for(int i=0;i<Camiones.size();i++){
+                Camiones.get(i).mostrarRequerimientos();
+                Camiones.get(i).mostrarRutas();
+            }
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            Camiones = SimulatedAnnealing.getSolucionVecina(G, Camiones);
+            */
             //Muestra los valores
             for(int i=0;i<Camiones.size();i++){
                 Camiones.get(i).mostrarRequerimientos();

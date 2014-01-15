@@ -31,6 +31,10 @@ public class Camion{
 	 * entre los nodos de cada requerimiento
 	 */
 	private ArrayList <Double> ListaDistanciaRequerimientos = new ArrayList();
+        
+        /**
+         * Para guardar el tamaño de la lista de distancias de requerimiento
+         */
 	private int distancia_lista_requerimientos_size;
 
 	/**
@@ -104,6 +108,30 @@ public class Camion{
 			this.lista_requerimientos_size = this.ListaRequerimientos.size();
 		}
 	}
+        
+        /**
+         * Reemplaza el valor en la posicion dada por el valor dado para la 
+         * lista de requerimientos
+         * @param posicion posicion del ojeto a reemplazar
+         * @param requerimiento tipo de dato que tomará su lugar
+         */
+        public void replaceListaRequerimientos(int posicion, Requerimiento requerimiento){
+            if(posicion<lista_requerimientos_size){
+                    this.ListaRequerimientos.set(posicion,requerimiento);
+            }
+        }
+        
+        /**
+         * Reemplaza el valor en la posicion dada por el valor dado para la 
+         * lista de requerimientos
+         * @param posicion posicion del ojeto a reemplazar
+         * @param distancia tipo de dato que tomará su lugar
+         */
+        public void replaceDistanciaRequerimientos(int posicion, double distancia){
+            if(posicion<distancia_lista_requerimientos_size){
+                    this.ListaDistanciaRequerimientos.set(posicion,distancia);
+            }
+        }
         
         /**
          * Obtiene la lista completa de requerimientos del camion
@@ -180,9 +208,12 @@ public class Camion{
          * @return double, valor de la distancia
          */
 	public double getDistanciaRequerimientos(int posicion){
-		if(posicion<distancia_lista_requerimientos_size){
-			return this.ListaDistanciaRequerimientos.get(posicion);
-		}
+       
+            if(posicion<distancia_lista_requerimientos_size){
+                
+                    return this.ListaDistanciaRequerimientos.get(posicion);
+            }
+            
             return -1;
 	}
 
@@ -271,7 +302,7 @@ public class Camion{
          * Muestra todos los requerimientos de este camion
          */
 	public void mostrarRequerimientos(){
-		System.out.println("Requerimientos del Camión "+this.getIdentificador()+": "+this.getListaRequerimientosSize());
+		System.out.println("Requerimientos del Camión "+this.getIdentificador());
 		System.out.println("   Formato: Nodo -> (distancia) -> Nodo");
 		for(int i=0;i<this.lista_requerimientos_size;i++){
 			System.out.print("   "+this.getListaRequerimientos(i).getNodoInicial().getPosicion());
@@ -291,12 +322,20 @@ public class Camion{
         public void setListaRequerimientosSize(int nuevo){
             this.lista_requerimientos_size = nuevo;
         }
+        
+        /**
+         * Asigna un nuevo valor al tamño de la lista de distancias
+         * @param nuevo nuevo valor
+         */
+        public void setDistanciaRequerimientosSize(int nuevo){
+            this.distancia_lista_requerimientos_size = nuevo;
+        }        
 
         /**
          * Muestra todas las rutas de este camion
          */
 	public void mostrarRutas(){
-		System.out.println("Rutas del Camnión "+this.getIdentificador()+": "+this.getDistanciaCargadorSize());
+		System.out.println("Rutas del Camnión "+this.getIdentificador());
 		System.out.println("   Formato: Requerimiento(x,y) -> (distancia) -> Requerimiento(x,y)");
                 
                 System.out.print("   "+0);
@@ -316,6 +355,7 @@ public class Camion{
 			System.out.print(""+this.getListaRequerimientos(i+1).getNodoInicial().getPosicion());
                         System.out.println("("+this.getListaRequerimientos(i+1).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i+1).getNodoDestino().getCoordY()+")");
 		}
+                System.out.println("");
 	}
 
         /**
@@ -324,11 +364,11 @@ public class Camion{
          */
 	public double getDistanciaTotalRequerimientos(){
 		double total=0;
-
+               
 		for(int i=0;i<this.distancia_lista_requerimientos_size;i++){
 			total += getDistanciaRequerimientos(i);
 		}
-
+                
 		return total;
 	}
         
@@ -408,6 +448,7 @@ public class Camion{
          */
         public void ordenarListaRequerimientos(GrafoTabla Grafico){
             ArrayList <Requerimiento> ListaAuxiliar = new ArrayList();
+            ArrayList <Double> ListaAuxiliarDouble = new ArrayList();
             int nodo_aux = 0;
             
             double distancia_ref;
@@ -417,23 +458,34 @@ public class Camion{
             int posicion = nodo_aux;
             
             //distancia = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos().get(0).getNodoInicial().getPosicion());
-            distancia = 100000000;
+            distancia = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos(0).getNodoInicial().getPosicion());
             
             for(int j=0;j<this.getListaRequerimientosSize();j++){
                 for(int i=0;i<this.getListaRequerimientosSize();i++){
-                    distancia_ref = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos().get(i).getNodoInicial().getPosicion());
-                    if(distancia>distancia_ref && !añadido.contains(i)){
-                        distancia = distancia_ref;
-                        posicion = i;
-                    }                           
+                    if(!añadido.contains(this.getListaRequerimientos(i).getNodoInicial().getPosicion())){
+                        distancia_ref = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos(i).getNodoInicial().getPosicion());
+                        if(distancia_ref<=distancia){
+                            distancia = distancia_ref;
+                            posicion = i;
+                        }   
+                    }
                 }
-
-                añadido.add(posicion);
+                
+                añadido.add(this.ListaRequerimientos.get(posicion).getNodoInicial().getPosicion());
                 ListaAuxiliar.add(this.ListaRequerimientos.get(posicion));
+                ListaAuxiliarDouble.add(this.getDistanciaRequerimientos(posicion));
                 nodo_aux = this.ListaRequerimientos.get(posicion).getNodoDestino().getPosicion();
+                
+                for(int k=0;k<this.getListaRequerimientosSize();k++){
+                    if(!añadido.contains(this.getListaRequerimientos(k).getNodoInicial().getPosicion())){
+                        distancia = Grafico.getDistancia(nodo_aux, this.getListaRequerimientos(k).getNodoInicial().getPosicion());
+                        break;
+                    }
+                }
             }
             
             this.ListaRequerimientos = ListaAuxiliar;
+            this.ListaDistanciaRequerimientos = ListaAuxiliarDouble;
         }
         
         /**
