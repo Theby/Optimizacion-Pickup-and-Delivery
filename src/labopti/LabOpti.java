@@ -33,10 +33,12 @@ public class LabOpti {
             
             for(int i=0;i<Camiones.size();i++){
                 Camiones.get(i).mostrarRequerimientos();
-                //Camiones.get(i).mostrarRutas();
+                Camiones.get(i).mostrarRutas();
             }
+            System.out.println("Comenzando heuristica");
+            Camiones = SimulatedAnnealing.heuristica(G, Camiones);
             
-            System.out.println("FIN");
+            System.out.println("FIN: "+SimulatedAnnealing.getResultadoFuncionObjetivo(Camiones));
             
         }
         catch(Exception e){

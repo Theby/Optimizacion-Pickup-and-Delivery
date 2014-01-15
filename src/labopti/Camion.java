@@ -27,7 +27,7 @@ public class Camion{
 
 	//Para guardar la distancia entre el nodo final de un requerimiento y el de comienzo de otro
 	//Usado para las rutas
-	private ArrayList <Double> ListaDistanciaCargador;
+	private ArrayList <Double> ListaDistanciaCargador = new ArrayList();
 	private int lista_distancia_cargador_size;
 
 	public Camion(){
@@ -165,26 +165,39 @@ public class Camion{
 	}
 
 	public void mostrarRequerimientos(){
-		System.out.println("Requerimientos del Camión "+getIdentificador()+":");
+		System.out.println("Requerimientos del Camión "+this.getIdentificador()+": "+this.getListaRequerimientosSize());
 		System.out.println("   Formato: Nodo -> (distancia) -> Nodo");
 		for(int i=0;i<this.lista_requerimientos_size;i++){
 			System.out.print("   "+this.getListaRequerimientos(i).getNodoInicial().getPosicion());
+                        System.out.print("("+this.getListaRequerimientos(i).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i).getNodoInicial().getCoordY()+")");
 			System.out.print(" --> ");
 			System.out.print(" ("+this.getDistanciaRequerimientos(i)+") ");
 			System.out.print(" --> ");
-			System.out.println(""+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
+			System.out.print(""+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
+                        System.out.println("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
 		}
 	}
 
 	public void mostrarRutas(){
-		System.out.println("Rutas del Camni�n "+getIdentificador()+":");
-		System.out.println("   Formato: Requerimiento -> (distancia) -> Requerimiento");
-		for(int i=0;i<this.lista_distancia_cargador_size;i++){
-			System.out.print("   "+getListaRequerimientos(i).getNodoDestino());
+		System.out.println("Rutas del Camnión "+this.getIdentificador()+": "+this.getDistanciaCargadorSize());
+		System.out.println("   Formato: Requerimiento(x,y) -> (distancia) -> Requerimiento(x,y)");
+                
+                System.out.print("   "+0);
+                System.out.print("(0,0)");
+                System.out.print(" --> ");
+                System.out.print(" ("+this.getDistanciaCargador(0)+") ");
+                System.out.print(" --> ");
+                System.out.print(""+this.getListaRequerimientos(0).getNodoInicial().getPosicion());
+                System.out.println("("+this.getListaRequerimientos(0).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(0).getNodoDestino().getCoordY()+")");
+                
+		for(int i=0;i<this.lista_distancia_cargador_size-1;i++){
+			System.out.print("   "+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
+                        System.out.print("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
 			System.out.print(" --> ");
-			System.out.print(" ("+getDistanciaCargador(i)+") ");
+			System.out.print(" ("+this.getDistanciaCargador(i+1)+") ");
 			System.out.print(" --> ");
-			System.out.println(""+getListaRequerimientos(i+1).getNodoInicial());
+			System.out.print(""+this.getListaRequerimientos(i+1).getNodoInicial().getPosicion());
+                        System.out.println("("+this.getListaRequerimientos(i+1).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i+1).getNodoDestino().getCoordY()+")");
 		}
 	}
 

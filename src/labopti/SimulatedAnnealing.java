@@ -55,12 +55,9 @@ public class SimulatedAnnealing{
         
         //Por cada camión
         for(int i=0;i<Camiones.size();i++){
-            System.out.println("Camion: "+i);
             //Por cada Requisito
             for(int j=0;j<Camiones.get(i).getListaRequerimientosSize();j++){
-                System.out.println("Requisito: "+j);
                 Camiones.get(i).setDistanciaCargador(Grafico.getDistancia(pos_nodo_aux, Camiones.get(i).getListaRequerimientos().get(j).getNodoInicial().getPosicion()));
-                System.out.println("cambiando de nodo base");
                 pos_nodo_aux = Camiones.get(i).getListaRequerimientos(j).getNodoDestino().getPosicion();
             }
         }

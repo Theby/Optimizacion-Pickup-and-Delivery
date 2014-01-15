@@ -102,8 +102,9 @@ public class MyNodo extends NodoTabla{
      * @return distancia al otro nodo.
      */
     public double distancia(MyNodo Nodo){
-            double distanciaX = this.coordX-Nodo.coordX;
-            double distanciaY = this.coordY-Nodo.coordY;
-            return Math.sqrt((distanciaX*distanciaX) + (distanciaY*distanciaY));
+            double distanciaX = this.getCoordX()-Nodo.getCoordX();
+            double distanciaY = this.getCoordY()-Nodo.getCoordY();
+            
+            return Math.sqrt(Math.pow(distanciaY,2) + Math.pow(distanciaX, 2));
         }
 }

@@ -39,11 +39,15 @@ public class GrafoTabla {
      * Usa la lista de nodos, que tiene largo n, para generar una matriz de n x n, que representa la distancia entre cada nodo. 
      */
     public void interconectar(){
-            int n = ListaNodos.size();
+            int n = this.ListaNodos.size();
             matriz = new double[n][n];
             for(int i=0; i<n; i++){
                 for(int j=0; j<n; j++){
-                    matriz[i][j]=((MyNodo)ListaNodos.get(i)).distancia((MyNodo)ListaNodos.get(j));
+                    if(i==j){
+                        this.setDistancia(i, j, 0);
+                    }else{
+                        this.setDistancia(i, j, this.getArray().get(i).distancia(this.getArray().get(j)));
+                    }                    
                 }
             }
         }
@@ -285,7 +289,7 @@ public class GrafoTabla {
         return matriz;
     }
 
-    public void setDistancia(int nodo_1, int nodo_2, int distancia){
+    public void setDistancia(int nodo_1, int nodo_2, double distancia){
         matriz[nodo_1][nodo_2] = distancia;
         matriz[nodo_2][nodo_1] = distancia;
     }
