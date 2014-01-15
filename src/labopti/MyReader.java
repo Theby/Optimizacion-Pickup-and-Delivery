@@ -89,7 +89,12 @@ public class MyReader extends Reader{
                     numRequisitos++;
                 }
                 else{
-                    ErrorMessenger.ShowError(0);
+                    if(auxS.length==0||auxS.length==1){
+                    //nothing
+                    }
+                    else{
+                        ErrorMessenger.ShowError(0);
+                    }
                 }
             }
         }

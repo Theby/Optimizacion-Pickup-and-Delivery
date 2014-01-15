@@ -6,6 +6,7 @@ package labopti;
 
 import java.util.ArrayList;
 import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,7 @@ public class LabOpti {
             //Lee el archivo
             MyReader myreader = new MyReader();
             G = myreader.AnalisarArchivo();
+            myreader.close();
             LReq = myreader.LReq;
             Camiones = myreader.Vehiculos;
             
@@ -64,9 +66,13 @@ public class LabOpti {
             writer.close();
             
             //Muestra el resultado
-            System.out.println("Resultado con Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoConCarga(Camiones));
+            double outConCarga = SimulatedAnnealing.getResultadoFuncionObjetivoConCarga(Camiones);
+            double outSinCarga = SimulatedAnnealing.getResultadoFuncionObjetivoSinCarga(Camiones);
+            System.out.println("Resultado con Carga: " + outConCarga);
             System.out.println("");
-            System.out.println("Resultado sin Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoSinCarga(Camiones));
+            System.out.println("Resultado sin Carga: " + outSinCarga);
+            JOptionPane.showMessageDialog(null, "Resultado con Carga: " + outConCarga +
+                    "\n\nResultado sin Carga: " + outSinCarga, "Resultado",JOptionPane.PLAIN_MESSAGE);
             
         }
         catch(Exception e){
