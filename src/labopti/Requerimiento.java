@@ -58,4 +58,19 @@ public class Requerimiento {
         return NodoDestino;
     }
 
+    /**
+     * Obtiene el tiempo inicial de carga
+     * @return valor
+     */
+    public int getTiempoInicialCarga(){
+        return this.tiempoInicialCarga;
+    }
+    
+    /**
+     * Obtiene el tiempo final de carga
+     * @return valor
+     */
+    public int getTiempoFinalCarga(){
+        return this.tiempoFinalCarga;
+    }
 }

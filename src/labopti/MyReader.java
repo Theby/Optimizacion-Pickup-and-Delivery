@@ -15,6 +15,7 @@ public class MyReader extends Reader{
     int numNodos;    
     ArrayList<Requerimiento> LReq;
     ArrayList<Camion> Vehiculos;
+    static public int numRequisitos;
     
     /**
      * Implementa el constructor de la clase superior.
@@ -42,6 +43,7 @@ public class MyReader extends Reader{
      * @return GrafoTabla con los nodos en la ListaNodos y la matriz de distancias ya creada.
      */
     public GrafoTabla AnalisarArchivo(){
+        numRequisitos=0;
         GrafoTabla Grafo = new GrafoTabla();
         ArrayList<Requerimiento> LReqAux = new ArrayList();
         ArrayList<Camion> LCamAux = new ArrayList();
@@ -84,6 +86,7 @@ public class MyReader extends Reader{
                     LReqAux.add(auxC);//agregar cliente.
                     Grafo.addNodoCarga(Grafo.getArray().get(a));
                     Grafo.addNodoDestino(Grafo.getArray().get(b));
+                    numRequisitos++;
                 }
                 else{
                     ErrorMessenger.ShowError(0);

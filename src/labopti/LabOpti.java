@@ -54,7 +54,9 @@ public class LabOpti {
             }
             
             //Muestra el resultado
-            System.out.println("FIN: "+SimulatedAnnealing.getResultadoFuncionObjetivo(Camiones));
+            System.out.println("Resultado con Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoConCarga(Camiones));
+            System.out.println("");
+            System.out.println("Resultado sin Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoSinCarga(Camiones));
             
         }
         catch(Exception e){

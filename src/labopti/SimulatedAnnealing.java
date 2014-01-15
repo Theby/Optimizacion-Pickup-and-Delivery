@@ -210,12 +210,12 @@ public class SimulatedAnnealing{
                 SolucionVecina = getSolucionVecina(Grafico, Solucion);
        
                 //System.out.println(""+getResultadoFuncionObjetivo(SolucionVecina)+"/"+getResultadoFuncionObjetivo(Solucion));
-                if(getResultadoFuncionObjetivo(SolucionVecina)<getResultadoFuncionObjetivo(Solucion)){
+                if(getResultadoFuncionObjetivoConCarga(SolucionVecina)<getResultadoFuncionObjetivoConCarga(Solucion)){
                
                     Solucion = SolucionVecina;
                 }else{
        
-                    gama =  getResultadoFuncionObjetivo(SolucionVecina) - getResultadoFuncionObjetivo(Solucion);
+                    gama =  getResultadoFuncionObjetivoConCarga(SolucionVecina) - getResultadoFuncionObjetivoConCarga(Solucion);
                     poison = random.nextInt()%100;
                     
                     if(poison<0)
@@ -232,10 +232,11 @@ public class SimulatedAnnealing{
 
     /**
      * Realiza la suma de los valores para obtener el resultado de la funcion objetivo
+     * con carga incluida
      * @param Camiones Lista completa de camiones
      * @return Valor resultante
      */
-    public static double getResultadoFuncionObjetivo(ArrayList<Camion> Camiones){
+    public static double getResultadoFuncionObjetivoConCarga(ArrayList<Camion> Camiones){
         double solucion = 0;
 
         for(int i=0;i<Camiones.size();i++){
@@ -243,8 +244,26 @@ public class SimulatedAnnealing{
             solucion += Camiones.get(i).getResultado();
  
         }
-        //solucion -= Camiones.get(0).tiempoDeCarga();
+        solucion += (Camiones.get(0).getListaRequerimientos().get(0).getTiempoInicialCarga()+Camiones.get(0).getListaRequerimientos().get(0).getTiempoFinalCarga())*MyReader.numRequisitos;
+        solucion = Camiones.get(0).tiempoDeCarga(solucion);
 
+        return solucion;
+    }
+    
+    /**
+     * Realiza la suma de los valores para obtener el resultado de la funcion objetivo
+     * @param Camiones Lista completa de camiones
+     * @return Valor resultante
+     */
+    public static double getResultadoFuncionObjetivoSinCarga(ArrayList<Camion> Camiones){
+        double solucion = 0;
+
+        for(int i=0;i<Camiones.size();i++){
+
+            solucion += Camiones.get(i).getResultado();
+ 
+        }
+        solucion = Camiones.get(0).tiempoSinCarga(solucion);
 
         return solucion;
     }

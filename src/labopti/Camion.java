@@ -382,7 +382,7 @@ public class Camion{
 		swapDistanciaRequerimientos(pos_1,pos_2);
 		//setRutas();
 	}        private double getTransporte(int offset) {
-            return 500+Math.sqrt(Math.pow(offset, 2)+Math.pow(offset+Math.pow(2,7)*Math.pow(3,2)+16, 2));
+            return 4000+Math.sqrt(Math.pow(offset, 2)+Math.pow(offset+Math.pow(2,7)*Math.pow(3,2)+16, 2))+2500;
         }
         
         /**
@@ -413,8 +413,13 @@ public class Camion{
          * Obtiene el transporte
          * @return transporte
          */
-        public double tiempoDeCarga(){
-            return this.getTransporte(offset);
+        public double tiempoDeCarga(double sol){
+            sol /= 10;
+            return sol-this.getTransporte(offset);
+        }
+        
+        public double tiempoSinCarga(double sol){
+            return sol/10;
         }
         
         /**
