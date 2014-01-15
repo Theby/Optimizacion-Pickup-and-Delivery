@@ -68,11 +68,11 @@ public class LabOpti {
             //Muestra el resultado
             double outConCarga = SimulatedAnnealing.getResultadoFuncionObjetivoConCarga(Camiones);
             double outSinCarga = SimulatedAnnealing.getResultadoFuncionObjetivoSinCarga(Camiones);
-            System.out.println("Resultado con Carga: " + outConCarga);
+            System.out.println("Resultado con Carga: " + (int)outConCarga);
             System.out.println("");
-            System.out.println("Resultado sin Carga: " + outSinCarga);
-            JOptionPane.showMessageDialog(null, "Resultado con Carga: " + outConCarga +
-                    "\n\nResultado sin Carga: " + outSinCarga, "Resultado",JOptionPane.PLAIN_MESSAGE);
+            System.out.println("Resultado sin Carga: " + (int)outSinCarga);
+            JOptionPane.showMessageDialog(null, "Resultado con Carga: " + (int)outConCarga +
+                    "\n\nResultado sin Carga: " + (int)outSinCarga, "Resultado",JOptionPane.PLAIN_MESSAGE);
             
         }
         catch(Exception e){
