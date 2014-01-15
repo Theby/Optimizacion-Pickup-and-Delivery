@@ -309,7 +309,7 @@ public class Camion{
 			writer.print("   "+this.getListaRequerimientos(i).getNodoInicial().getPosicion());
                         writer.print("("+this.getListaRequerimientos(i).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i).getNodoInicial().getCoordY()+")");
 			writer.print(" --> ");
-			writer.print(" ("+this.getDistanciaRequerimientos(i)+") ");
+			writer.print(" ("+(int)this.getDistanciaRequerimientos(i)+") ");
 			writer.print(" --> ");
 			writer.print(""+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
                         writer.println("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
@@ -342,7 +342,7 @@ public class Camion{
                 writer.print("   "+0);
                 writer.print("(0,0)");
                 writer.print(" --> ");
-                writer.print(" ("+this.getDistanciaCargador(0)+") ");
+                writer.print(" ("+(int)this.getDistanciaCargador(0)+") ");
                 writer.print(" --> ");
                 writer.print(""+this.getListaRequerimientos(0).getNodoInicial().getPosicion());
                 writer.println("("+this.getListaRequerimientos(0).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(0).getNodoDestino().getCoordY()+")");
@@ -351,7 +351,7 @@ public class Camion{
 			writer.print("   "+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
                         writer.print("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
 			writer.print(" --> ");
-			writer.print(" ("+this.getDistanciaCargador(i+1)+") ");
+			writer.print(" ("+(int)this.getDistanciaCargador(i+1)+") ");
 			writer.print(" --> ");
 			writer.print(""+this.getListaRequerimientos(i+1).getNodoInicial().getPosicion());
                         writer.println("("+this.getListaRequerimientos(i+1).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i+1).getNodoDestino().getCoordY()+")");
