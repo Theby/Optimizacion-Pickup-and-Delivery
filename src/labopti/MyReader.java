@@ -49,7 +49,8 @@ public class MyReader extends Reader{
         String Line = this.readLine();
         Line = Line.replaceAll("	", " ");
         Line = Line.replaceAll("  ", " ");
-        System.out.println(Line);
+        //System.out.println(Line);
+        Camion.offset = 704;
         String[] auxS = Line.split(" ");
         if(auxS.length ==2){
             numVehiculos = Integer.parseInt(auxS[0]);
@@ -63,7 +64,7 @@ public class MyReader extends Reader{
             Line = this.readLine();
             Line = Line.replaceAll("	", " ");
             Line = Line.replaceAll("  ", " ");
-            System.out.println(Line);
+            //System.out.println(Line);
             auxS = Line.split(" ");
             if(auxS.length == 2){//Caso de linea con 2 valores.
                 MyNodo auxNodo = new MyNodo(Integer.parseInt(auxS[0]), Integer.parseInt(auxS[1])); //crear nodo.

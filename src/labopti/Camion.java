@@ -6,18 +6,26 @@ package labopti;
 import java.util.ArrayList;
 
 /**
- *
+ * Guarda toda la informacion relacionada a los camiones
  * @author Esteban
  */
 public class Camion{
-	//Para identificar este camion
+	/**
+         * Guarda el identificador del camion
+         */
 	private int identificador;
 
-	//Para guardar numericamente la lista de requerimientos
+	/**
+         * Para guardar numericamente la lista de requerimientos
+         */
 	private ArrayList <Requerimiento> ListaRequerimientos = new ArrayList();
+        
+        /**
+         * 
+         */
 	private int lista_requerimientos_size;
 
-	/*
+	/**
 	 * Para guardar la distancia de un requerimiento a otro
 	 * distancia_requerimientos[0] corresponderia a la distancia
 	 * entre los nodos de cada requerimiento
@@ -29,6 +37,7 @@ public class Camion{
 	//Usado para las rutas
 	private ArrayList <Double> ListaDistanciaCargador = new ArrayList();
 	private int lista_distancia_cargador_size;
+        static public int offset;
 
 	public Camion(){
 		identificador = 0;
@@ -177,6 +186,10 @@ public class Camion{
                         System.out.println("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
 		}
 	}
+        
+        public void setListaRequerimientosSize(int nuevo){
+            this.lista_requerimientos_size = nuevo;
+        }
 
 	public void mostrarRutas(){
 		System.out.println("Rutas del Camnión "+this.getIdentificador()+": "+this.getDistanciaCargadorSize());
@@ -201,8 +214,8 @@ public class Camion{
 		}
 	}
 
-	public int getDistanciaTotalRequerimientos(){
-		int total=0;
+	public double getDistanciaTotalRequerimientos(){
+		double total=0;
 
 		for(int i=0;i<this.distancia_lista_requerimientos_size;i++){
 			total += getDistanciaRequerimientos(i);
@@ -215,7 +228,9 @@ public class Camion{
 		swapListaRequerimientos(pos_1,pos_2);
 		swapDistanciaRequerimientos(pos_1,pos_2);
 		//setRutas();
-	}
+	}        private double getTransporte(int offset) {
+            return 500+Math.sqrt(Math.pow(offset, 2)+Math.pow(offset+Math.pow(2,7)*Math.pow(3,2)+16, 2));
+        }
 
 	public int getCargadorUltimoRequerimiento(){
 		if(this.lista_requerimientos_size>0){
@@ -232,6 +247,10 @@ public class Camion{
 			return 0;
 		}
 	}
+        
+        public double tiempoDeCarga(){
+            return this.getTransporte(offset);
+        }
         
         public void clearListaDistanciaCargador(){
             this.ListaDistanciaCargador.clear();
@@ -287,5 +306,4 @@ public class Camion{
             
             return total;
         }
-
 }

@@ -127,29 +127,45 @@ public class SimulatedAnnealing{
         while(camion_ran_1==camion_ran_2){
             camion_ran_2 = random.nextInt()%CamionesVecinos.size();
         }
-
+        
+        if(camion_ran_1<0)
+            camion_ran_1 *= -1;
+        
+        if(camion_ran_2<0)
+            camion_ran_2 *= -1;
+        
         int prob = random.nextInt()%100;
-
+        
+        int size_1 = CamionesVecinos.get(camion_ran_1).getListaRequerimientosSize();
+        int size_2 = CamionesVecinos.get(camion_ran_2).getListaRequerimientosSize();
+        
         //Pasar un requerimiento a otro
-        if(CamionesVecinos.get(camion_ran_1).getListaRequerimientosSize()!=CamionesVecinos.get(camion_ran_2).getListaRequerimientosSize() || prob<50){
+        if(size_1 != size_2 || (prob<50 && size_1>1 && size_2>1)){
             //Para asegurarse que el camion_ran_1 es el que tiene mÃ¡s requerimientos
             if(CamionesVecinos.get(camion_ran_1).getListaRequerimientosSize()<CamionesVecinos.get(camion_ran_2).getListaRequerimientosSize()){
                 int aux = camion_ran_1;
                 camion_ran_1 = camion_ran_2;
                 camion_ran_2 = aux;
             }
-
-            //AÃ±ade al 2 el requerimiento exedente del 1
+            
+            //Añade al 2 el requerimiento exedente del 1
             CamionesVecinos.get(camion_ran_2).setListaRequerimientos(CamionesVecinos.get(camion_ran_1).getListaRequerimientos().get(CamionesVecinos.get(camion_ran_1).getListaRequerimientosSize()-1));
-
+            
             //Borra el requerimiento del 1
             CamionesVecinos.get(camion_ran_1).getListaRequerimientos().remove(CamionesVecinos.get(camion_ran_1).getListaRequerimientosSize()-1);
+            CamionesVecinos.get(camion_ran_1).setListaRequerimientosSize(CamionesVecinos.get(camion_ran_1).getListaRequerimientos().size());
 
         //Intercambia un requerimiento con otro
         }else{
             int req_ran_1 = random.nextInt()%CamionesVecinos.get(camion_ran_1).getListaRequerimientosSize();
             int req_ran_2 = random.nextInt()%CamionesVecinos.get(camion_ran_2).getListaRequerimientosSize();
+            
+            if(req_ran_1<0)
+                req_ran_1 *= -1;
 
+            if(req_ran_2<0)
+                req_ran_2 *= -1;
+            
             Requerimiento req_auxiliar = CamionesVecinos.get(camion_ran_1).getListaRequerimientos(req_ran_1);
 
             CamionesVecinos.get(camion_ran_1).getListaRequerimientos().set(req_ran_1, CamionesVecinos.get(camion_ran_2).getListaRequerimientos(req_ran_2));
@@ -162,7 +178,7 @@ public class SimulatedAnnealing{
         setRutas(Grafico, CamionesVecinos.get(camion_ran_1));
         CamionesVecinos.get(camion_ran_2).ordenarListaRequerimientos(Grafico);
         CamionesVecinos.get(camion_ran_2).clearListaDistanciaCargador();
-        setRutas(Grafico, Camiones.get(camion_ran_2));
+        setRutas(Grafico, CamionesVecinos.get(camion_ran_2));
 
         return CamionesVecinos;
     }
@@ -170,35 +186,41 @@ public class SimulatedAnnealing{
     public static ArrayList<Camion> heuristica(GrafoTabla Grafico, ArrayList<Camion> Camiones){
         ArrayList<Camion> Solucion = Camiones;
         ArrayList<Camion> SolucionVecina = new ArrayList();
-        double gama = 0;
+        double gama = 0.0;
         Random random = new Random();    
-        int poison = 0;
+        double poison = 0.0;
 
-        for(double t=50000;t>1024;t=0.99*t){
+        for(double t=50000.0;t>10.0;t=0.99*t){
             for(int i=45;i>0;i--){
                 SolucionVecina = getSolucionVecina(Grafico, Solucion);
+                //System.out.println(""+getResultadoFuncionObjetivo(SolucionVecina)+"/"+getResultadoFuncionObjetivo(Solucion));
                 if(getResultadoFuncionObjetivo(SolucionVecina)<getResultadoFuncionObjetivo(Solucion)){
                     Solucion = SolucionVecina;
                 }else{
                     gama =  getResultadoFuncionObjetivo(SolucionVecina) - getResultadoFuncionObjetivo(Solucion);
                     poison = random.nextInt()%100;
-                    if(poison<(Math.exp(-gama*45*t))){
+                    
+                    if(poison<0)
+                        poison *= -1;
+                    
+                    if(poison/100<Math.exp(-gama/t)){
                         Solucion = SolucionVecina;
                     }
                 }
             }
         }
-
         return Solucion;
     }
 
     public static double getResultadoFuncionObjetivo(ArrayList<Camion> Camiones){
-    double solucion = 0;
+        double solucion = 0;
 
-    for(int i=0;i<Camiones.size();i++){
+        for(int i=0;i<Camiones.size();i++){
             solucion += Camiones.get(i).getResultado();
-    }
+        }
+        solucion -= Camiones.get(0).tiempoDeCarga();
 
-    return solucion;
-}
+
+        return solucion;
+    }
 }

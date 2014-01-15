@@ -25,18 +25,20 @@ public class LabOpti {
             LReq = myreader.LReq;
             Camiones = myreader.Vehiculos;
             
-            G.mostrarNodos();
+            //G.mostrarNodos();
             //G.mostrarTabla();
             
             SimulatedAnnealing.setRequerimientos(G, LReq, Camiones);
             SimulatedAnnealing.setRutas(G, Camiones);
             
+            
+            System.out.println("Comenzando heuristica");
+            Camiones = SimulatedAnnealing.heuristica(G, Camiones);
+            
             for(int i=0;i<Camiones.size();i++){
                 Camiones.get(i).mostrarRequerimientos();
                 Camiones.get(i).mostrarRutas();
             }
-            System.out.println("Comenzando heuristica");
-            Camiones = SimulatedAnnealing.heuristica(G, Camiones);
             
             System.out.println("FIN: "+SimulatedAnnealing.getResultadoFuncionObjetivo(Camiones));
             
