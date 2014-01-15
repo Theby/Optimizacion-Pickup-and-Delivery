@@ -5,6 +5,7 @@
 package labopti;
 
 import java.util.ArrayList;
+import java.io.PrintWriter;
 
 /**
  *
@@ -28,7 +29,7 @@ public class LabOpti {
             
             //G.mostrarNodos();
             //G.mostrarTabla();
-            
+                        
             //Realiza los ajustes para la heuristica
             SimulatedAnnealing.setRequerimientos(G, LReq, Camiones);
             SimulatedAnnealing.setRutas(G, Camiones);
@@ -48,10 +49,19 @@ public class LabOpti {
             Camiones = SimulatedAnnealing.getSolucionVecina(G, Camiones);
             */
             //Muestra los valores
-            for(int i=0;i<Camiones.size();i++){
-                Camiones.get(i).mostrarRequerimientos();
-                Camiones.get(i).mostrarRutas();
+            PrintWriter writer = new PrintWriter("Requerimientos-y-Rutas.txt", "UTF-8"); 
+            
+            writer.println("Resultado con Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoConCarga(Camiones));
+            writer.println("Resultado sin Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoSinCarga(Camiones));
+            writer.println("");
+            writer.println("");
+            writer.println("");
+            
+            for(int i=0;i<Camiones.size();i++){                          
+                    Camiones.get(i).mostrarRequerimientos(writer);
+                    Camiones.get(i).mostrarRutas(writer);                
             }
+            writer.close();
             
             //Muestra el resultado
             System.out.println("Resultado con Carga: "+SimulatedAnnealing.getResultadoFuncionObjetivoConCarga(Camiones));

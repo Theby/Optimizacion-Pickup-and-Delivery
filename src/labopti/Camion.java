@@ -4,6 +4,7 @@
 package labopti;
 
 import java.util.ArrayList;
+import java.io.PrintWriter;
 
 /**
  * Guarda toda la informacion relacionada a los camiones
@@ -301,17 +302,17 @@ public class Camion{
         /**
          * Muestra todos los requerimientos de este camion
          */
-	public void mostrarRequerimientos(){
-		System.out.println("Requerimientos del Camión "+this.getIdentificador());
-		System.out.println("   Formato: Nodo -> (distancia) -> Nodo");
+	public void mostrarRequerimientos(PrintWriter writer){
+		writer.println("Requerimientos del Camión "+this.getIdentificador());
+		writer.println("   Formato: Nodo -> (distancia) -> Nodo");
 		for(int i=0;i<this.lista_requerimientos_size;i++){
-			System.out.print("   "+this.getListaRequerimientos(i).getNodoInicial().getPosicion());
-                        System.out.print("("+this.getListaRequerimientos(i).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i).getNodoInicial().getCoordY()+")");
-			System.out.print(" --> ");
-			System.out.print(" ("+this.getDistanciaRequerimientos(i)+") ");
-			System.out.print(" --> ");
-			System.out.print(""+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
-                        System.out.println("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
+			writer.print("   "+this.getListaRequerimientos(i).getNodoInicial().getPosicion());
+                        writer.print("("+this.getListaRequerimientos(i).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i).getNodoInicial().getCoordY()+")");
+			writer.print(" --> ");
+			writer.print(" ("+this.getDistanciaRequerimientos(i)+") ");
+			writer.print(" --> ");
+			writer.print(""+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
+                        writer.println("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
 		}
 	}
         
@@ -334,28 +335,28 @@ public class Camion{
         /**
          * Muestra todas las rutas de este camion
          */
-	public void mostrarRutas(){
-		System.out.println("Rutas del Camnión "+this.getIdentificador());
-		System.out.println("   Formato: Requerimiento(x,y) -> (distancia) -> Requerimiento(x,y)");
+	public void mostrarRutas(PrintWriter writer){
+		writer.println("Rutas del Camnión "+this.getIdentificador());
+		writer.println("   Formato: Requerimiento(x,y) -> (distancia) -> Requerimiento(x,y)");
                 
-                System.out.print("   "+0);
-                System.out.print("(0,0)");
-                System.out.print(" --> ");
-                System.out.print(" ("+this.getDistanciaCargador(0)+") ");
-                System.out.print(" --> ");
-                System.out.print(""+this.getListaRequerimientos(0).getNodoInicial().getPosicion());
-                System.out.println("("+this.getListaRequerimientos(0).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(0).getNodoDestino().getCoordY()+")");
+                writer.print("   "+0);
+                writer.print("(0,0)");
+                writer.print(" --> ");
+                writer.print(" ("+this.getDistanciaCargador(0)+") ");
+                writer.print(" --> ");
+                writer.print(""+this.getListaRequerimientos(0).getNodoInicial().getPosicion());
+                writer.println("("+this.getListaRequerimientos(0).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(0).getNodoDestino().getCoordY()+")");
                 
 		for(int i=0;i<this.lista_distancia_cargador_size-1;i++){
-			System.out.print("   "+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
-                        System.out.print("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
-			System.out.print(" --> ");
-			System.out.print(" ("+this.getDistanciaCargador(i+1)+") ");
-			System.out.print(" --> ");
-			System.out.print(""+this.getListaRequerimientos(i+1).getNodoInicial().getPosicion());
-                        System.out.println("("+this.getListaRequerimientos(i+1).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i+1).getNodoDestino().getCoordY()+")");
+			writer.print("   "+this.getListaRequerimientos(i).getNodoDestino().getPosicion());
+                        writer.print("("+this.getListaRequerimientos(i).getNodoDestino().getCoordX()+","+this.getListaRequerimientos(i).getNodoDestino().getCoordY()+")");
+			writer.print(" --> ");
+			writer.print(" ("+this.getDistanciaCargador(i+1)+") ");
+			writer.print(" --> ");
+			writer.print(""+this.getListaRequerimientos(i+1).getNodoInicial().getPosicion());
+                        writer.println("("+this.getListaRequerimientos(i+1).getNodoInicial().getCoordX()+","+this.getListaRequerimientos(i+1).getNodoDestino().getCoordY()+")");
 		}
-                System.out.println("");
+                writer.println("");
 	}
 
         /**
